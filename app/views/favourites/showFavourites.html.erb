@@ -1,0 +1,111 @@
+
+<script>
+jQuery(document).ready(function($) {
+        $('.quont-minus').click(function () {
+            var $input = $(this).parent().find('input');
+            var count = parseInt($input.val()) - 1;
+            count = count < 1 ? 1 : count;
+            $input.val(count);
+            $input.change();
+            return false;
+        });
+        $('.quont-plus').click(function () {
+            var $input = $(this).parent().find('input');
+            $input.val(parseInt($input.val()) + 1);
+            $input.change();
+            return false;
+        });
+    });
+
+</script>
+
+
+<% content_for :catmenu do %>
+<div class = "catMenu">
+   <ul id="menu">
+
+  <% @rootCats.each do |rcat| %>
+  <li class="menu_right"><%= link_to rcat.name, controller: "catalog", action: "show", cat_id: rcat.id%>
+ <%= renderSubmenu(rcat) %>
+
+</li>
+<% end %>
+</ul>
+</div>
+
+
+<% end %>
+<h1>Избранные товары</h1>
+<br>
+<% unless @Prods.blank? %>
+
+<table class = "favTable" cellpadding="5">
+<tr bgcolor="#dddddd">
+<td>
+
+</td>
+<td>
+Артикул
+</td>
+<td>
+Наименование
+</td>
+<td width="30px">
+Цена
+</td>
+<td>
+Кол-во
+</td>
+<td>
+действие
+</td>
+</tr>
+
+<% @Prods.each do |product| %>
+<tr>
+<td width="80px">
+<a href='/catalog/product/<%= product.id%>'><%= image_tag product.image.url(:medium), :class => "fav_img" %></a>
+</td>
+<td>
+<div class = "favTableArticul">
+<%= product.articul %>
+</div>
+</td>
+<td >
+<div class = "favTableName" width ="150px">
+<a href='/catalog/product/<%= product.id%>'><%= product.name %></a>
+</div>
+</td>
+<td >
+<div class = "favTablePrice">
+<%= product.price %> р.
+</div>
+</td>
+<td>
+<div class="favTableQuantity">
+      
+      <%= form_for @order_item, remote: true do |f| %>
+      <h4 class="text-right">цена: <span style="color: green"><%= product.price %> р.</span></h4>
+        <div class="input-group">
+          <%= f.number_field :quantity, value: 1, class: "cartCounterSimple", min: 1 %>
+          <div class="input-group-btn">
+            <%= f.hidden_field :product_id, value: product.id %>
+           <%= image_submit_tag('to_cart.png', :class => "product_tab_rating" )%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>
+
+</div>
+</td>
+<td>
+<br>
+<%= link_to 'удалить', controller: "favourites", action: "destroy", id: product.id %>
+</td>
+
+</tr>
+<% end %>
+
+</table>
+<% end %>

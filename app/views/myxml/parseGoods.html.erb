@@ -1,0 +1,28 @@
+Hello!
+
+<br>
+<br>
+
+<%= @cnt %>
+<br> кол-во цен:
+<%= @cntPrices %>
+<br>
+
+<% @childGoods.each do |good| %>
+	<%= good.xpath('Ид').inner_text %>
+	<br>
+	<%= good.xpath('Артикул').inner_text %>
+	<br>
+	<%= good.xpath('Наименование').inner_text %>
+	<br>
+
+	<%= good.xpath('Страна').inner_text %>
+	<br>
+	<%= good.xpath('Группы').xpath('Ид').inner_text %>
+	<% good.xpath('ЗначенияРеквизитов').children.each do |req| %>
+		<% if req.xpath('Наименование').inner_text == "Код" then %>
+			<%= req.xpath('Значение').inner_text %>
+		<% end %>
+	<% end %>
+
+<% end %>

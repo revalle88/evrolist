@@ -1,0 +1,160 @@
+// Place all the styles related to the Catalog controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.colmask{
+   position: relative;
+   overflow: hidden;
+   margin: 0px auto;
+   width: 88%;
+   background-color: #ffffff
+}
+.header{
+   float: left;
+   height: 90px;
+   width: 100%;
+   background-color: #4096ee
+}
+.catmenu{
+    float: left;
+   height: 90px;
+   width: 100%;
+   background-color: #4096ee
+
+}
+.colmid{
+   position: relative;
+   width: 100%;
+   right: 22%;
+   background-color: #ffffff
+}
+.colleft{
+   position: relative;
+   width: 100%;
+   right: 58%;
+   background-color: #ffffff
+}
+.col1{
+   position: relative;
+   overflow: hidden;
+   float: left;
+   width: 56.9%;
+   left: 100.55%;
+   background-color: #ffffff
+}
+.col2{
+   position: relative;
+   overflow: hidden;
+   float: left;
+   width: 18.9%;
+   left: 23.65%;
+   background-color: #ffffff
+}
+.col3{
+   position: relative;
+   overflow: hidden;
+   float: left;
+   width: 20.9%;
+   left: 82.75%;
+   background-color: #ffffff
+}
+.footer{
+   float: left;
+   width: 100%;
+   height: 90px;
+   background-color: #7f7f7f
+}
+body {
+   padding: 0px;
+   margin: 0px;
+   font-size: 90%;
+   background-color: black
+}
+
+.block1 {
+width: 580px;
+height: 300px;
+background: #ccc;
+padding: 5px;
+padding-right: 0px;
+border: solid 1px black;
+float: left;
+}
+.block2 {
+align: left;
+width: 150px;
+height: 300px;
+background: #fc0;
+padding: 0px;
+border: solid 1px black;
+float: left;
+top: 0px;
+left: 0px;
+}
+.block3 {
+align: left;
+width: 400px;
+height: 300px; 
+background: #fc0;
+padding: 0px;
+border: solid 1px black;
+float: left;
+position: relative;
+top: 0px;
+left: 0px;
+}
+.block4 {
+margin: 0px;
+width: 150px;
+height: 250px;
+background: #fff;
+padding: 0px;
+padding-right: 0px;
+border: solid 1px black;
+float: top;
+}
+.block5 {
+width: 385px;
+height: 45px;
+background: #fff;
+padding: 0px;
+padding-right: 0px;
+border: solid 1px black;
+float: top;
+}
+
+.block6 {
+float:left; 
+width: 200px;
+height: 200px;
+background: #fff;
+padding: 0px;
+padding-right: 0px;
+border: solid 1px black;
+}
+.block7 {
+float:left;
+width: 179px;
+height: 200px;
+background: #ccc;
+padding: 0px;
+padding-right: 0px;
+border: solid 1px black;
+}
+.block8 {
+width: 100%;
+height: 32%;
+background: #fff;
+padding: 0px;
+padding-right: 0px;
+border: solid 1px black;
+float: top;
+}
+.block9 {
+width: 100%;
+height: 24%;
+background: #fff;
+padding: 0px;
+padding-right: 0px;
+border: solid 1px black;
+float: top;
+}

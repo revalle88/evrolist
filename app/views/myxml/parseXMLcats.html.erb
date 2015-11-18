@@ -1,0 +1,10 @@
+Hello!
+
+<br>
+<%= @cnt %>
+<br>
+<% @rootGroups.each do |gruppa| %>
+	<%= gruppa.xpath('Наименование').inner_text %>
+	<%= printChildCats(gruppa) %>
+	<br>
+<% end %>

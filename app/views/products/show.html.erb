@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag @product.image.url(:thumb) %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Id1c:</strong>
+  <%= @product.id1c %>
+</p>
+
+<p>
+  <strong>Descriptionfull:</strong>
+  <%= @product.descriptionFull %>
+</p>
+
+<p>
+  <strong>Descriptionmin:</strong>
+  <%= @product.descriptionMin %>
+</p>
+
+<p>
+  <strong>Articul:</strong>
+  <%= @product.articul %>
+</p>
+
+<p>
+  <strong>Baseunit:</strong>
+  <%= @product.baseUnit %>
+</p>
+
+<p>
+  <strong>Shtrihkod:</strong>
+  <%= @product.shtrihkod %>
+</p>
+
+<p>
+  <strong>Standart:</strong>
+  <%= @product.standart %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>Rest:</strong>
+  <%= @product.rest %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @product.category %>
+</p>
+
+<% @pp.each do |p| %>
+sdfsd
+<%= p.property_id %>
+<%= p.stringValue %>
+<% end %>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

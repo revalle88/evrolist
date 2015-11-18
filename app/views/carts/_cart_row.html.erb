@@ -1,0 +1,59 @@
+<div class="well">
+
+
+
+
+<!--  <div class="row">
+    <div class="col-xs-8">
+      <h4><%= product.name %></h4>
+    </div>
+    <div class="col-xs-4">
+      -->
+      <%= form_for order_item, remote: true do |f| %>
+
+      <tr>
+<td width="80px">
+<a href='/catalog/product/<%= product.id%>'><%= image_tag product.image.url(:medium), :class => "fav_img" %></a>
+</td>
+<td>
+<div class = "favTableArticul">
+<%= product.articul %>
+</div>
+</td>
+<td width="180px">
+<div class = "favTableName">
+<a href='/catalog/product/<%= product.id%>'><%= product.name %></a>
+</div>
+</td>
+<td>
+<div class = "favTablePrice">
+<h4 class="text-right"><span style="color: green"><%= order_item.unit_price %> р.</span></h4> 
+</div>
+</td>
+<td> 
+
+
+        
+        <div class="row">
+          <div class="col-xs-4">
+            <%= f.number_field :quantity, value: order_item.quantity.to_i, class: "cartCounterSimple", min: 1 %>
+            <%= f.hidden_field :product_id, value: product.id %>
+            <h4 class="text-right">Цена: <span style="color: green"><%= order_item.total_price %> р.</span></h4>
+          </div>
+          </td>
+            <td> 
+          <div class="col-xs-8 text-right">
+            <div class="btn-group">
+              <%= f.submit "изменить количество", class: "btn btn-primary" %>
+              <%= link_to "Удалить", order_item, { data: { confirm: "Вы уверены что хотите удалить продукт '#{order_item.product.name}' из вашей корзины?" }, method: :delete, remote: true, class: "btn btn-danger" } %>
+            </div>
+          </div>
+         
+          </td>
+        </div>
+        
+      <% end %>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<h1>Listing categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Id1c</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= category.id1c %></td>
+        <td><%= link_to 'Show', category %></td>
+        <td><%= link_to 'Edit', edit_category_path(category) %></td>
+        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<br>
+<br>
+<nav id="primary_nav_wrap">
+<ul>
+  <% @rootCats.each do |rcat| %>
+  <li ><a href="#"><%= rcat.parent_id %>
+ <%= rcat.name %>
+ <%= rcat.children_count %>
+ </a>
+<%= renderSubmenu(rcat) %>
+
+</li>
+<% end %>
+</ul>
+</nav>
+<br>
+<br>
+
+<%= link_to 'New Category', new_category_path %>
+
+
+
+

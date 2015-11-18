@@ -1,0 +1,84 @@
+
+<script>
+jQuery(document).ready(function($) {
+        $('.quont-minus').click(function () {
+            var $input = $(this).parent().find('input');
+            var count = parseInt($input.val()) - 1;
+            count = count < 1 ? 1 : count;
+            $input.val(count);
+            $input.change();
+            return false;
+        });
+        $('.quont-plus').click(function () {
+            var $input = $(this).parent().find('input');
+            $input.val(parseInt($input.val()) + 1);
+            $input.change();
+            return false;
+        });
+    });
+
+</script>
+  
+
+<% content_for :catmenu do %>
+<div class = "catMenu">
+   <ul id="menu">
+
+  <% @rootCats.each do |rcat| %>
+  <li class="menu_right"><%= link_to rcat.name, controller: "catalog", action: "show", cat_id: rcat.id%>
+ <%= renderSubmenu(rcat) %>
+
+</li>
+<% end %>
+</ul>
+</div>
+
+
+<% end %>
+
+<!-- Продукт -->
+<div class = "product_name"><%= @product.name %></div>
+<br>
+
+<!--<%= link_to image_tag(@product.image.url(:thumb), :class => "product_tab_img"), @product.image.url(:medium), :rel => "lightbox", :title => @product.name%> -->
+
+<a href="<%= @product.image.url%>" rel="lightbox" title="<%= @product.name %>"> <%= image_tag @product.image.url(:medium), :class => "product_img" %></a>
+
+
+  <div class = "product_art">
+ Арт.: <%= @product.articul %>
+ </div>
+ <%= image_tag('z_rating_0.gif')%>
+ <div class = "product_price_unit">
+ цена за шт.
+ </div>
+ <div class = "product_price">
+ <%= @product.price %> р.
+ </div>
+ <div class = "product_attention">
+Внимание! Цена действительна только при заказе в интернет-магазине. 
+</div>
+
+<div class = "to_cart_counter">
+ <div class="opt-quontity">
+    <span class="quont-minus btn">-</span>
+    <input type="text" value="1">
+    <span class="quont-plus btn">+</span>
+</div> <!-- .opt-quontity -->
+
+</div>
+<%= image_submit_tag('to_cart.png', :class => "product_tab_rating" )%>
+
+ <div>
+ <a href = "http://vk.com/share.php?url=<%= request.original_url %>&title=<%= @product.name %>&description=<%= @product.name %>&image=<%= @product.image %>"><%= image_tag('3.png')%></a>
+  <a href = "http://www.facebook.com/sharer.php?s=100&p[title]=<%= @product.name %>&p[url]=<%= request.original_url %>"><%= image_tag('1.png')%></a>
+   <a href = "http://vk.com/share.php?url=<%= request.original_url %>&title=<%= @product.name %>&description=<%= @product.name %>&image=<%= @product.image %>"><%= image_tag('2.png')%></a>
+    <a href = "http://vk.com/share.php?url=<%= request.original_url %>&title=<%= @product.name %>&description=<%= @product.name %>&image=<%= @product.image %>"><%= image_tag('4.png')%></a>
+ </div>
+
+
+
+<% content_for :sidebar do %>
+
+<% end %>
+

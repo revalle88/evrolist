@@ -1,0 +1,21 @@
+<% content_for :catmenu do %>
+<div class = "catMenu">
+   <ul id="menu">
+
+  <% @rootCats.each do |rcat| %>
+  <li class="menu_right"><%= link_to rcat.name, controller: "catalog", action: "show", cat_id: rcat.id%>
+ <%= renderSubmenu(rcat) %>
+
+</li>
+<% end %>
+</ul>
+</div>
+
+
+<% end %>
+
+<h1>Корзина покупателя</h1>
+<br>
+<div class="shopping-cart">
+  <%= render "shopping_cart" %>
+</div>
