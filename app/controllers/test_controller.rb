@@ -27,5 +27,6 @@ OrderItem.create(order_id: @order.id, product_id: 66, quantity: 10)
   end
   def clearSession
   	session.clear
+    puts "session cleared"
   end
 end
