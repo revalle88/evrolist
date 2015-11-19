@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20151109144625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", force: true do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.string   "id1c"
     t.integer  "parent_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20151109144625) do
     t.datetime "image_updated_at"
   end
 
-  create_table "order_items", force: true do |t|
+  create_table "order_items", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "order_id"
     t.decimal  "unit_price",  precision: 12, scale: 3
@@ -45,13 +45,13 @@ ActiveRecord::Schema.define(version: 20151109144625) do
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
   add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
-  create_table "order_statuses", force: true do |t|
+  create_table "order_statuses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "orders", force: true do |t|
+  create_table "orders", force: :cascade do |t|
     t.decimal  "subtotal",        precision: 12, scale: 3
     t.decimal  "tax",             precision: 12, scale: 3
     t.decimal  "shipping",        precision: 12, scale: 3
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20151109144625) do
 
   add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
 
-  create_table "product_properties", force: true do |t|
+  create_table "product_properties", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "property_id"
     t.string   "stringValue"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20151109144625) do
   add_index "product_properties", ["product_id"], name: "index_product_properties_on_product_id", using: :btree
   add_index "product_properties", ["property_id"], name: "index_product_properties_on_property_id", using: :btree
 
-  create_table "products", force: true do |t|
+  create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "id1c"
     t.text     "descriptionFull"
@@ -97,13 +97,13 @@ ActiveRecord::Schema.define(version: 20151109144625) do
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
 
-  create_table "properties", force: true do |t|
+  create_table "properties", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "surname"
     t.string   "phoneWork"
