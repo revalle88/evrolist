@@ -77,4 +77,25 @@ List::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+config.action_mailer.default_url_options = { host: '188.166.23.221' }
+
+
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+config.action_mailer.default :charset => "utf-8"
+ActionMailer::Base.smtp_settings = {
+        #:tls => true,
+        :address    =>  "smtp.gmail.com",
+        #:port => 587,
+        :domain => "mail.google.com",
+        :authentication => :login,
+        :user_name => "revalle88@gmail.com",
+        :password => "dreamlord88",
+        :enable_starttls_auto => true
+
+
+    }
+
 end
