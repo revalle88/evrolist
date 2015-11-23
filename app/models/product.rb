@@ -17,4 +17,15 @@ class Product < ActiveRecord::Base
     if res.code == "200" then self.image = open(url)
     end
   end
+
+
+def self.search(search)
+     
+  if search
+
+     self.where("name like ?", "%#{search}%")
+  else
+    self.all
+  end
+end
 end

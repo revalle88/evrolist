@@ -2,9 +2,12 @@ class CatalogController < ApplicationController
   def root
   	@rootCats = Category.where(parent_id: nil)
     @categories = Category.all
-    @products = Product.all
+   
+    #@products = Product.search(params[:search])
+    #@products = Product.all
     ##cart
     @order_item = current_order.order_items.new
+    
   end
   def show
   	@rootCats = Category.where(parent_id: nil)
@@ -31,6 +34,14 @@ class CatalogController < ApplicationController
     @properties = Property.all
     @products = Product.all
 
+  end
+
+  def search
+    @rootCats = Category.where(parent_id: nil)
+    @categories = Category.all
+    @catProducts = Product.search(params[:search]).page(params[:page]).per_page(12)
+    @order_item = current_order.order_items.new
+    @order_item = current_order.order_items.new
   end
   
 end

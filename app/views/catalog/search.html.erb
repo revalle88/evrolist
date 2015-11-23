@@ -1,0 +1,104 @@
+<% content_for :catmenu do %>
+<div class = "catMenu">
+   <ul id="menu">
+
+  <% @rootCats.each do |rcat| %>
+  <li class="menu_right"><%= link_to rcat.name, controller: "catalog", action: "show", cat_id: rcat.id%>
+ <%= renderSubmenu(rcat) %>
+
+</li>
+<% end %>
+</ul>
+</div>
+
+
+<% end %>
+<script>
+$(document).ready ( function () {
+	//alert("doc ready!")  
+    $(document).on ("click", ".toFav", function () {
+      var clicked = this.id
+    	var clickid = this.id.substring(3);
+        //alert("hi"+clickid);
+         $.ajax({
+        url: "/favourites/addToFavourites",
+        type: "GET",
+        dataType: "json",
+        data: { id: clickid },
+        //complete: function() {  alert("Ajax complete!")},
+             success: function(data) {
+                        // Do something with the response here
+                         // Show the file contents in our editor.
+          //                  alert("Ajax success!");
+                            $("#fav"+clickid).prop('value', 'просмотреть'); 
+                            $("#toFavBtn"+clickid).empty(); 
+                            $("#toFavBtn"+clickid).html("<a href = '/favourites/showFavourites' class = 'fav_link'>избранное</a>");                   // editor is defined somewhere above 
+                                                           // 'file_content' is the key we use to respond
+                                                           // in the controller function below
+                      },
+               error: function() {
+            //            alert("Ajax error!")
+                      }
+        //context: document.body
+    })
+    
+    });
+});
+
+</script>
+  <b>Результаты поиска</b>
+  <br>
+
+  <%= will_paginate @catProducts, :previous_label => 'назад <<', :next_label => '>> вперед' %>
+<br>
+
+<% @catProducts.each do |product| %>
+<div class = "product_tab">
+<%= link_to image_tag(product.image.url(:thumb), :class => "product_tab_img"), :action => 'product', :controller => 'catalog', :good_id => product.id%>
+<!-- <%= image_tag product.image.url(:thumb), :class => "product_tab_img" %> -->
+<%= image_tag('z_rating_0.gif', :class => "product_tab_rating" )%>
+<div class = "product_tab_name">
+<a href='/catalog/product/<%= product.id%>'><%= product.name %></a>
+</div>
+<div class = "product_tab_art">
+Арт: <%= product.articul %><br>
+</div>
+<div class = "product_tab_price">
+<%= number_with_precision(product.price, precision: 2) %>&nbspр.
+</div>
+<div class="">
+      
+      <%= form_for @order_item, remote: true do |f| %>
+     
+        <div class="input-group">
+          <%= f.number_field :quantity, value: 1, class: "cartCounterSimpleCat", min: 1 %>
+          <div class="input-group-btn">
+            <%= f.hidden_field :product_id, value: product.id %>
+           <%= image_submit_tag('to_cart.png', :class => "product_tab_rating" )%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+<div class = "product_tab_2buttons">
+<div id = "toFavBtn<%= product.id %>">
+<input type="submit"  value="В Избранное" class = "toFav" id = "fav<%= product.id %>"/>
+</div>
+
+
+&nbsp&nbsp
+<!-- <form method = "get" action = "/favourites/showFavourites">-->
+<div class = "compare_btn">
+<a href = "/favourites/showFavourites"><input type="submit"  value="К сравнению" /></a>
+</div>
+<!-- </form>-->
+
+</div>
+
+
+
+</div>
+
+
+<% end %>
+

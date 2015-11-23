@@ -44,8 +44,19 @@
   <div class="header">
   <%= image_tag('listLogo.png', :style => "margin:8px 0px 0px 10px")%>
   <div class = "headerSearch">
-  <input type = "text" class = "searchInput" size = 40>&nbsp&nbsp&nbsp
-  <input type="submit"  value = "Найти">
+
+
+
+<%= form_tag "/catalog/search/", :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search], class: "searchInput", size: 40 %> &nbsp&nbsp&nbsp
+    <%= submit_tag "Найти", :name => nil %>
+ </p>
+<% end %>
+
+
+  <!-- <input type = "text" class = "searchInput" size = 40>&nbsp&nbsp&nbsp
+  <input type="submit"  value = "Найти">-->
   </div><!-- .headerSearch-->
     
     </div><!-- .header-->

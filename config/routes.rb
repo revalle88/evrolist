@@ -16,6 +16,8 @@ List::Application.routes.draw do
   get "myxml/updatePrices"
   get "favourites/deleteSession"
   get "favourites/destroy"
+  get "catalog/root"
+  get "catalog/search", to: 'catalog#search', as: 'search_products'
   resources :properties
 
   get "test/clearSession"
