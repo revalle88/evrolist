@@ -13,6 +13,8 @@ gem 'devise'
 
 gem 'slimbox2-rails'
 
+gem 'jquery-turbolinks'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 #pagination
