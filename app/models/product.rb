@@ -23,7 +23,7 @@ def self.search(search)
      
   if search
 
-     self.where("name like ?", "%#{search}%")
+     self.where("lower(name) like ?", "%#{search}%".downcase)
   else
     self.all
   end
