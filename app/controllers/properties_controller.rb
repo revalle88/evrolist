@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+    layout 'admin'
   before_action :set_property, only: [:show, :edit, :update, :destroy]
 
   # GET /properties
@@ -27,10 +28,11 @@ class PropertiesController < ApplicationController
   # POST /properties.json
   def create
     @property = Property.new(property_params)
+     @properties = Property.all
 
     respond_to do |format|
       if @property.save
-        format.html { redirect_to @property, notice: 'Property was successfully created.' }
+        format.html { redirect_to action: 'index', notice: 'Property was successfully created.' }
         format.json { render action: 'show', status: :created, location: @property }
       else
         format.html { render action: 'new' }
@@ -42,9 +44,10 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1
   # PATCH/PUT /properties/1.json
   def update
+     @properties = Property.all
     respond_to do |format|
       if @property.update(property_params)
-        format.html { redirect_to @property, notice: 'Property was successfully updated.' }
+        format.html { redirect_to action: 'index', notice: 'Property was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

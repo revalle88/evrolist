@@ -7,6 +7,8 @@ gem 'awesome_nested_set'
 #paperclip
 gem "paperclip", "~> 4.3"
 
+gem 'bootstrap-sass', '~> 3.3.5.1'
+
 gem 'nokogiri'
 
 gem 'devise'

@@ -1,10 +1,31 @@
-<h1>Listing categories</h1>
 
-<table>
+
+
+ 
+  <div class="well">
+    <%= link_to "Новая категория", new_category_path,  class: "btn btn-primary" %>
+  </div>
+  <div class="new-category"></div>
+
+  <div class = "headerSearch">
+
+<%= form_tag "/categories", :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search], class: "searchInput", size: 40 %> &nbsp&nbsp&nbsp
+    <%= submit_tag "Найти", :name => nil %>
+ </p>
+<% end %>
+  </div><!-- .headerSearch-->
+  <%= will_paginate @catProducts, :previous_label => 'назад <<', :next_label => '>> вперед' %>
+<br>
+
+<table  class="table table-bordered table-striped">
+
+
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Id1c</th>
+      <th>Категория</th>
+      <th>идентификатор в 1С</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,9 +37,9 @@
       <tr>
         <td><%= category.name %></td>
         <td><%= category.id1c %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Просмотреть', category %></td>
+        <td><%= link_to 'редактировать', edit_category_path(category) %></td>
+        <td><%= link_to 'Просмотреть', category %><br><%= link_to 'редактировать', edit_category_path(category) %><br><%= link_to 'Удалить', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,25 +47,6 @@
 
 <br>
 
-<br>
-<br>
-<nav id="primary_nav_wrap">
-<ul>
-  <% @rootCats.each do |rcat| %>
-  <li ><a href="#"><%= rcat.parent_id %>
- <%= rcat.name %>
- <%= rcat.children_count %>
- </a>
-<%= renderSubmenu(rcat) %>
-
-</li>
-<% end %>
-</ul>
-</nav>
-<br>
-<br>
-
-<%= link_to 'New Category', new_category_path %>
 
 
 

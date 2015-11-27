@@ -1,10 +1,16 @@
-<h1>Listing properties</h1>
 
-<table>
+  <div class="well">
+    <%= link_to "Добавить новое свойство продукта", new_property_path,  class: "btn btn-primary" %>
+  </div>
+  <div class="new-property"></div>
+
+
+
+<table  class="table table-bordered table-striped">
   <thead>
     <tr>
       <th>Name</th>
-      <th></th>
+      
       <th></th>
       <th></th>
     </tr>
@@ -14,9 +20,9 @@
     <% @properties.each do |property| %>
       <tr>
         <td><%= property.name %></td>
-        <td><%= link_to 'Show', property %></td>
-        <td><%= link_to 'Edit', edit_property_path(property) %></td>
-        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <td><%= link_to 'Редактировать', edit_property_path(property) %></td>
+        <td><%= link_to 'Удалить', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +30,3 @@
 
 <br>
 
-<%= link_to 'New Property', new_property_path %>

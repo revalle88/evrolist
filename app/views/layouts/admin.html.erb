@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List</title>
+  <%= stylesheet_link_tag    "admin"%>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+<br>
+АДМИНКА (вы вошли как)
+<br>
+<br>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="/properties">Реквизиты товаров</a></li>
+        <li><a href="/products">Продукты</a></li>
+        <li><a href="/categories">Категории</a></li>
+        <li><a href="#">Статьи</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+
+<div class="container">
+<%= yield %>
+</div>
+</body>
+</html>

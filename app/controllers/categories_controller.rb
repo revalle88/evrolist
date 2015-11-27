@@ -1,11 +1,13 @@
 class CategoriesController < ApplicationController
+  layout 'admin'
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   # GET /categories
   # GET /categories.json
   def index
     @rootCats = Category.where(parent_id: nil)
-    @categories = Category.all
+    @categories = Category.search(params[:search]).page(params[:page]).per_page(5)
+  #  @categories = Category.all
   end
 
   # GET /categories/1
@@ -33,10 +35,12 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
+
         if @r
         @r.reload
       end
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+          @categories = Category.search(params[:search]).page(params[:page]).per_page(5)
+        format.html { render action: 'index', notice: 'Category was successfully created.' }
         format.json { render action: 'show', status: :created, location: @category }
       else
         format.html { render action: 'new' }
@@ -77,6 +81,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name, :id1c, :parent_id, :image)
+      params.require(:category).permit(:name, :id1c, :parent_id, :image, :search)
     end
 end
