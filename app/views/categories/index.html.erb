@@ -16,7 +16,7 @@
  </p>
 <% end %>
   </div><!-- .headerSearch-->
-  <%= will_paginate @catProducts, :previous_label => 'назад <<', :next_label => '>> вперед' %>
+  <%= will_paginate @categories, :previous_label => 'назад <<', :next_label => '>> вперед' %>
 <br>
 
 <table  class="table table-bordered table-striped">
@@ -26,8 +26,8 @@
     <tr>
       <th>Категория</th>
       <th>идентификатор в 1С</th>
-      <th></th>
-      <th></th>
+      <th>Принадлежит</th>
+     
       <th></th>
     </tr>
   </thead>
@@ -37,8 +37,7 @@
       <tr>
         <td><%= category.name %></td>
         <td><%= category.id1c %></td>
-        <td><%= link_to 'Просмотреть', category %></td>
-        <td><%= link_to 'редактировать', edit_category_path(category) %></td>
+        <td><%= category.parent_id %></td>
         <td><%= link_to 'Просмотреть', category %><br><%= link_to 'редактировать', edit_category_path(category) %><br><%= link_to 'Удалить', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

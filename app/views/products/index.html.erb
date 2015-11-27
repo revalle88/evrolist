@@ -1,22 +1,46 @@
-<h1>Listing products</h1>
+
+
+  <div class="well">
+    <%= link_to "Новый товар", new_product_path,  class: "btn btn-primary" %>
+  </div>
+  <div class="new-product"></div>
+
+  <div class = "headerSearch">
+
+<%= form_tag "/products", :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search], class: "searchInput", size: 40 %> &nbsp&nbsp&nbsp
+    <%= submit_tag "Найти", :name => nil %>
+ </p>
+<% end %>
+  </div><!-- .headerSearch-->
+  <%= will_paginate @products, :previous_label => 'назад <<', :next_label => '>> вперед' %>
+<br>
+
 
 <table  class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Id1c</th>
-      <th>Descriptionfull</th>
-      <th>Descriptionmin</th>
-      <th>Articul</th>
-      <th>Baseunit</th>
+      <th>Название</th>
+      <th>Категория</th>
+      <th>артикул</th>
+      <th>идентификатор в 1с</th>
+      
+     
+      <th>единица</th>
+     
+      <th>Цена</th>
+      <th>Остаток</th>
+       <th>Действие</th>
+    <!--<th>Baseunit</th>
       <th>Shtrihkod</th>
       <th>Standart</th>
-      <th>Price</th>
-      <th>Rest</th>
-      <th>Category</th>
+       <th>Descriptionfull</th>
+      <th>Descriptionmin</th>
+     
       <th></th>
-      <th></th>
-      <th></th>
+     
+      <th></th>-->
     </tr>
   </thead>
 
@@ -24,19 +48,36 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= product.name %></td>
-        <td><%= product.id1c %></td>
-        <td><%= product.descriptionFull %></td>
-        <td><%= product.descriptionMin %></td>
-        <td><%= product.articul %></td>
+
+<td>
+<% if defined?(product.category.name ) %>
+ <%= product.category.name %>
+ <% else %>
+ -
+<% end %>
+</td>
+
+
+         
+           <td><%= product.articul %></td>
+            <td><%= product.id1c %></td>
+       
         <td><%= product.baseUnit %></td>
-        <td><%= product.shtrihkod %></td>
-        <td><%= product.standart %></td>
         <td><%= product.price %></td>
         <td><%= product.rest %></td>
-        <td><%= product.category %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Просмотр', product %><br>
+        <%= link_to 'Редактировать', edit_product_path(product) %><br>
+        <%= link_to 'Удалить', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       
+      <!--
+        <td><%= product.descriptionFull %></td>
+        <td><%= product.descriptionMin %></td>
+       <td><%= image_tag product.image.url(:thumb) %></td>
+        
+        <td><%= product.shtrihkod %></td>
+        <td><%= product.standart %></td>-->
+        
+        
       </tr>
     <% end %>
   </tbody>
@@ -44,4 +85,4 @@
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<!--<%= link_to 'New Product', new_product_path %>-->
