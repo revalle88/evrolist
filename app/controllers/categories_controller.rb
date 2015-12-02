@@ -13,6 +13,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @childCats = Category.where(parent_id: params[:id])
   end
 
   # GET /categories/new

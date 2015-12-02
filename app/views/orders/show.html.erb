@@ -1,0 +1,52 @@
+
+
+<table  class="table table-bordered table-striped", cellpadding="5">
+<tr bgcolor="#dddddd">
+<td>
+
+</td>
+<td>
+Артикул
+</td>
+<td>
+Наименование
+</td>
+<td>
+Цена
+</td>
+<td>
+Кол-во
+</td>
+<td>
+Общая стоимость
+</td>
+</tr>
+  <% @order_items.each do |order_item| %>
+   	<tr>
+<td width="80px">
+<a href='/catalog/product/<%= order_item.product.id%>'><%= image_tag order_item.product.image.url(:medium), :class => "fav_img" %></a>
+</td>
+<td>
+<div class = "favTableArticul">
+<%= order_item.product.articul %>
+</div>
+</td>
+<td width="180px">
+<div class = "favTableName">
+<a href='/catalog/product/<%= order_item.product.id%>'><%= order_item.product.name %></a>
+</div>
+</td>
+<td>
+<div class = "favTablePrice">
+<h4 class="text-right"><span style="color: green"><%= order_item.unit_price %> р.</span></h4> 
+</div>
+</td>
+<td>
+<%= order_item.quantity %>
+</td>
+<td>
+<span style="color: green"><%= order_item.total_price %> р.</span>
+</td>
+</tr>
+  <% end %>
+  </table>

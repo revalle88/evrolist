@@ -1,67 +1,89 @@
 <p id="notice"><%= notice %></p>
-
-<%= image_tag @product.image.url(:thumb) %>
-
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-
-<p>
-  <strong>Id1c:</strong>
-  <%= @product.id1c %>
-</p>
-
-<p>
-  <strong>Descriptionfull:</strong>
-  <%= @product.descriptionFull %>
-</p>
-
-<p>
-  <strong>Descriptionmin:</strong>
-  <%= @product.descriptionMin %>
-</p>
-
-<p>
-  <strong>Articul:</strong>
-  <%= @product.articul %>
-</p>
-
-<p>
-  <strong>Baseunit:</strong>
-  <%= @product.baseUnit %>
-</p>
-
-<p>
-  <strong>Shtrihkod:</strong>
-  <%= @product.shtrihkod %>
-</p>
-
-<p>
-  <strong>Standart:</strong>
-  <%= @product.standart %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<p>
-  <strong>Rest:</strong>
-  <%= @product.rest %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @product.category %>
-</p>
-
+<div class="well" style="float:right; width: 400px">
+  
+<%= image_tag @product.image.url(:medium) %>
+<br>
+<br>
+Свойства товара:
+<br>
 <% @pp.each do |p| %>
-sdfsd
-<%= p.property_id %>
-<%= p.stringValue %>
+
+ <%= Property.find(p.property_id).name %>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= p.stringValue %><%= p.floatValue %>
+<%= form_tag controller: 'products', action: 'deleteatt' do %>
+ <%= hidden_field_tag 'pp_id', p.id  %>
+ <%= hidden_field_tag 'product_id', p.product.id  %>
+  <%= submit_tag "Удалить" %>
+<%end%>
+<br>
 <% end %>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+
+  </div>
+
+  <div style="width: 700px">
+<table class="table table-bordered table-striped">
+<tr>
+  <td>
+    <strong>Наименование</strong></td>
+    <td><%= @product.name %></td>
+ 
+  </tr>
+  <tr>
+  
+    <td><strong>Идентификатор в 1с</strong></td>
+    <td><%= @product.id1c %></td>
+  </tr>
+ <tr>
+  <td><strong>Принадлежит категории</strong>
+</td>
+  <td><% unless @product.category.blank? %>  <%= @product.category.name %><% end %></td>
+  </tr>
+  
+
+  <tr>
+  <td><strong>Полное описание</strong></td>
+  <td> <%= @product.descriptionFull %></td>
+  </tr>
+   <tr>
+  <td><strong>Сокращенное описание</strong></td>
+  <td><%= @product.descriptionMin %></td>
+  </tr>
+   <tr>
+  <td><strong>Артикул</strong></td>
+  <td><%= @product.articul %></td>
+  </tr>
+   <tr>
+  <td><strong>Единица</strong></td>
+  <td> <%= @product.baseUnit %></td>
+  </tr>
+  <tr>
+  <td><strong>Штрихкод</strong></td>
+  <td> <%= @product.shtrihkod %></td>
+  </tr>
+   <tr>
+  <td> <strong>Стандарт</strong></td>
+  <td><%= @product.standart %></td>
+  </tr>
+  <tr>
+  <td><strong>Цена</strong></td>
+  <td><%= @product.price %></td>
+  </tr>
+   <tr>
+  <td> <strong>Остаток</strong></td>
+  <td> <%= @product.rest %></td>
+  </tr>
+
+
+
+</table>
+  
+ </div>
+
+
+
+
+
+
+
+<%= link_to 'Редактировать', edit_product_path(@product) %> |
+<%= link_to 'Назад', products_path %>

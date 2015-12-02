@@ -42,4 +42,19 @@ module CategoriesHelper
 	 htmlData.html_safe
 
 	end
+
+	def renderCatCrumb(cat)
+		htmlData = ""
+		if cat.parent_id?
+			htmlData = htmlData + "<a href = '/categories/"+cat.parent_id.to_s+"'>"+Category.find(cat.parent_id).name+"</a> >> ";
+			htmlData
+			curCat = Category.find(cat.parent_id)
+			htmlData = renderCatCrumb(curCat) + htmlData
+			
+		
+		end
+		
+			
+		htmlData
+	end
 end

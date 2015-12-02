@@ -1,6 +1,32 @@
-<h1>Editing product</h1>
+<h3>Редактирование товара</h3>
 
+  <div class="well" style="float:right; width: 400px">
+  
+<%= image_tag @product.image.url(:medium) %>
+<br>
+<br>
+Свойства товара:
+<br>
+<% @pp.each do |p| %>
+
+ <%= Property.find(p.property_id).name %>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= p.stringValue %><%= p.floatValue %>
+<%= form_tag controller: 'products', action: 'deleteatt' do %>
+ <%= hidden_field_tag 'pp_id', p.id  %>
+ <%= hidden_field_tag 'product_id', p.product.id  %>
+  <%= submit_tag "Удалить" %>
+<%end%>
+<br>
+<% end %>
+<%= link_to "Добавить свойство товара", controller: "products", action: "newatt",  remote: true, class: "btn btn-primary" %>
+  <div id="att-modal" class = "modal fade" role="dialog" style="width: 200px; margin: auto">
+  	
+  </div>
+
+  </div>
+<div style="width: 700px">
 <%= render 'form' %>
+</div>
 
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+
+<%= link_to 'Просмотр', @product %> |
+<%= link_to 'Назад', products_path %>

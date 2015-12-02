@@ -11,57 +11,69 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :id1c %><br>
-    <%= f.text_field :id1c %>
-  </div>
-  <div class="field">
-    <%= f.label :descriptionFull %><br>
-    <%= f.text_area :descriptionFull %>
-  </div>
-  <div class="field">
-    <%= f.label :descriptionMin %><br>
-    <%= f.text_area :descriptionMin %>
-  </div>
-  <div class="field">
-    <%= f.label :articul %><br>
-    <%= f.text_field :articul %>
-  </div>
-  <div class="field">
-    <%= f.label :baseUnit %><br>
-    <%= f.text_field :baseUnit %>
-  </div>
-  <div class="field">
-    <%= f.label :shtrihkod %><br>
-    <%= f.text_field :shtrihkod %>
-  </div>
-  <div class="field">
-    <%= f.label :standart %><br>
-    <%= f.text_field :standart %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :rest %><br>
-    <%= f.text_field :rest %>
-  </div>
-  <div class="field">
-<%= f.label :category_id %><br>
-<%= select("product", "category_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
-</div>
+<table class="table table-bordered table-striped">
+<tr>
+  <td>
+    <%= f.label "Наименование" %></td>
+    <td><%= f.text_field :name %></td>
  
-    <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %> 
-  </div>
+  </tr>
+  <tr>
+  
+    <td><%= f.label "Идентификатор в 1с" %></td>
+    <td><%= f.text_field :id1c %></td>
+  </tr>
+ <tr>
+  <td><%= f.label "Принадлежит категории" %>
+</td>
+  <td>  <%= select("product", "category_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %></td>
+  </tr>
+   <tr>
+  <td> <%= f.label "Картинка" %></td>
+  <td>  <%= f.file_field :image %> </td>
+  </tr>
+
+
+  <tr>
+  <td><%= f.label "Полное описание" %></td>
+  <td> <%= f.text_area :descriptionFull %></td>
+  </tr>
+   <tr>
+  <td><%= f.label "Сокращенное описание" %></td>
+  <td><%= f.text_area :descriptionMin %></td>
+  </tr>
+   <tr>
+  <td><%= f.label "Артикул" %></td>
+  <td><%= f.text_field :articul %></td>
+  </tr>
+   <tr>
+  <td> <%= f.label "Единица" %></td>
+  <td> <%= f.text_field :baseUnit %></td>
+  </tr>
+  <tr>
+  <td> <%= f.label "Штрихкод" %></td>
+  <td> <%= f.text_field :shtrihkod %></td>
+  </tr>
+   <tr>
+  <td> <%= f.label "Стандарт" %></td>
+  <td><%= f.text_field :standart %></td>
+  </tr>
+  <tr>
+  <td><%= f.label "Цена" %></td>
+  <td><%= f.text_field :price %></td>
+  </tr>
+   <tr>
+  <td> <%= f.label "Остаток" %></td>
+  <td>  <%= f.text_field :rest %></td>
+  </tr>
+
+
+
+</table>
+  
+ 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Сохранить"%>
   </div>
 <% end %>
+

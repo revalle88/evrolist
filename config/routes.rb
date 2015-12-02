@@ -37,6 +37,18 @@ List::Application.routes.draw do
 
   resources :categories
 
+
+  #addatt
+  get 'products/newatt/:id', to: 'products#newatt', as: 'new_att'
+  post 'products/addatt', to: 'products#addatt'
+  post 'products/deleteatt', to: 'products#deleteatt'
+
+  #admin orders
+  get 'orders/', to: 'orders#index'
+  get 'orders/show/:id', to: 'orders#show'
+  get 'orders/delete/:id', to: 'orders#delete'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

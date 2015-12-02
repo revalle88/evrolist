@@ -1,0 +1,22 @@
+<%= form_tag controller: 'products', action: 'addatt' do %>
+Задать свойство товару: <%= @product_id %>
+<div class="field">
+<%= label_tag "Свойство" %><br>
+
+<%= select_tag("property_id", options_from_collection_for_select(@properties, "id", "name")) %>
+
+</div>
+
+<div class="field">
+    <%= label_tag "Текстовое значение" %><br>
+    <%= text_field_tag :stringValue %>
+
+    <%= hidden_field_tag 'product_id', @product_id  %>
+
+
+  </div>
+   <div class="actions">
+    <%= submit_tag "добавить" %>
+  </div>
+
+<% end %>

@@ -7,6 +7,8 @@ class Product < ActiveRecord::Base
   has_many :properties, through:  :productProperties
   has_many :order_items
 
+  accepts_nested_attributes_for :productProperties
+
   
   
 

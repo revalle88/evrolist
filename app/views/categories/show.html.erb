@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+
+<%=raw renderCatCrumb(@category) %> <%= @category.name %>
+
 <p>
   <strong>Name:</strong>
   <%= @category.name %>
@@ -10,7 +13,14 @@
   <%= @category.id1c %>
 </p>
 
-<%= image_tag @category.image.url(:thumb) %>
+<%= image_tag @category.image.url(:medium) %>
+<br>
+Список дочерних категорий:
+<ul>	
+<% @childCats.each do |childCat| %>
+	<li><%= link_to childCat.name, controller: "categories", action: "show", id: childCat.id %></li>
+<% end %>
+</ul>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

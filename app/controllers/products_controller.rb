@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @pp = ProductProperty.where(product_id: 1)
+    @pp = ProductProperty.where(product_id: params[:id])
   end
 
   # GET /products/new
@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    @pp = ProductProperty.where(product_id: params[:id])
   end
 
   # POST /products
@@ -62,6 +63,33 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url }
       format.json { head :no_content }
     end
+  end
+
+  def newatt
+
+    @properties = Property.all
+    @product_id = params[:id]
+    #@pp = ProductProperty.new
+
+
+  end
+
+  def addatt
+    puts params
+    @pp = ProductProperty.new
+    @pp.property_id = params[:property_id]
+    @pp.stringValue = params[:stringValue]
+    @pp.product_id = params[:product_id]
+    @pp.save
+    redirect_to :action => "edit", :id => params[:product_id]
+  end
+
+  def deleteatt
+    puts "DELETE ATT"
+    puts params
+    @pp = ProductProperty.find(params[:pp_id])
+    @pp.destroy
+     redirect_to :action => "edit", :id => params[:product_id]
   end
 
   private
