@@ -1,4 +1,8 @@
 List::Application.routes.draw do
+  get 'content/news'
+
+  mount Ckeditor::Engine => '/ckeditor'
+  resources :articles
   get "test/createorder"
   get "order_items/create"
   get "order_items/update"
@@ -47,6 +51,11 @@ List::Application.routes.draw do
   get 'orders/', to: 'orders#index'
   get 'orders/show/:id', to: 'orders#show'
   get 'orders/delete/:id', to: 'orders#delete'
+
+  #articles
+  get 'content/show/:id', to: 'content#show'
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

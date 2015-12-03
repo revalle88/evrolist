@@ -51,6 +51,7 @@
   <p>
     <%= text_field_tag :search, params[:search], class: "searchInput", size: 40 %> &nbsp&nbsp&nbsp
     <%= submit_tag "Найти", :name => nil %>
+    <%= link_to('новости', :controller => 'content', :action => 'news') %>
  </p>
 <% end %>
 

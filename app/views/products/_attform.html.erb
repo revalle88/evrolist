@@ -1,3 +1,4 @@
+ <div class="modal-body">
 <%= form_tag controller: 'products', action: 'addatt' do %>
 Задать свойство товару: <%= @product_id %>
 <div class="field">
@@ -15,8 +16,11 @@
 
 
   </div>
+ </div>
+  <div class="modal-footer">
    <div class="actions">
     <%= submit_tag "добавить" %>
+  </div>
   </div>
 
 <% end %>

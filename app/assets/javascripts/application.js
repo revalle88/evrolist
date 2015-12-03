@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap
+//= require ckeditor/init
 //= require slimbox2.min
 //= require turbolinks
 //= require_tree .

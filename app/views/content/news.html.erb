@@ -1,0 +1,37 @@
+<% content_for :catmenu do %>
+<div class = "catMenu">
+   <ul id="menu">
+
+  <% @rootCats.each do |rcat| %>
+  <li class="menu_right"><%= link_to rcat.name, controller: "catalog", action: "show", cat_id: rcat.id%>
+ <%= renderSubmenu(rcat) %>
+
+</li>
+<% end %>
+</ul>
+</div>
+
+
+<% end %>
+
+<h3>Новости компании</h3>
+<br>
+
+<% @news.each do |n| %>
+
+
+<div style="background:#FFFFFF width:170px; float:left; margin-right:10px"><%= image_tag n.image.url(:thumb) %></div>
+
+
+<div style="width:600px; margin-left:15px;">
+ <h3><%= n.title %></h3>
+</div>
+<div style="width:600px; margin-left:15px; ">
+<%= n.description %>
+<br>
+<%= link_to 'подробнее...', :action => 'show', :controller => 'content', :id => n.id %>
+</div>
+<div style="clear: both">
+</div>
+
+<% end %>

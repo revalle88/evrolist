@@ -11,26 +11,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109144625) do
+ActiveRecord::Schema.define(version: 20151203190817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.string   "id1c"
-    t.integer  "parent_id"
-    t.integer  "lft",                            null: false
-    t.integer  "rgt",                            null: false
-    t.integer  "depth",              default: 0, null: false
-    t.integer  "children_count",     default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.text     "description"
+    t.boolean  "isNew"
+    t.boolean  "isReview"
+    t.boolean  "onHomePage"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",               limit: 255
+    t.string   "id1c",               limit: 255
+    t.integer  "parent_id"
+    t.integer  "lft",                                        null: false
+    t.integer  "rgt",                                        null: false
+    t.integer  "depth",                          default: 0, null: false
+    t.integer  "children_count",                 default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "product_id"
@@ -46,7 +77,7 @@ ActiveRecord::Schema.define(version: 20151109144625) do
   add_index "order_items", ["product_id"], name: "index_order_items_on_product_id", using: :btree
 
   create_table "order_statuses", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -66,7 +97,7 @@ ActiveRecord::Schema.define(version: 20151109144625) do
   create_table "product_properties", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "property_id"
-    t.string   "stringValue"
+    t.string   "stringValue", limit: 255
     t.float    "floatValue"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -76,21 +107,21 @@ ActiveRecord::Schema.define(version: 20151109144625) do
   add_index "product_properties", ["property_id"], name: "index_product_properties_on_property_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.string   "id1c"
+    t.string   "name",               limit: 255
+    t.string   "id1c",               limit: 255
     t.text     "descriptionFull"
     t.text     "descriptionMin"
-    t.string   "articul"
-    t.string   "baseUnit"
-    t.string   "shtrihkod"
-    t.string   "standart"
+    t.string   "articul",            limit: 255
+    t.string   "baseUnit",           limit: 255
+    t.string   "shtrihkod",          limit: 255
+    t.string   "standart",           limit: 255
     t.decimal  "price"
     t.float    "rest"
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
@@ -98,32 +129,32 @@ ActiveRecord::Schema.define(version: 20151109144625) do
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
 
   create_table "properties", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "surname"
-    t.string   "phoneWork"
-    t.string   "phoneMob"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "name",                   limit: 255
+    t.string   "surname",                limit: 255
+    t.string   "phoneWork",              limit: 255
+    t.string   "phoneMob",               limit: 255
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "unconfirmed_email",      limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
