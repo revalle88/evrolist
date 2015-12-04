@@ -1,38 +1,38 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>Название:</strong>
   <%= @article.title %>
 </p>
 
 <%= image_tag @article.image.url(:thumb) %>
 <div>
 <p>
-  <strong>Content:</strong>
+  <strong>Содержание:</strong>
   <%=raw @article.content %>
 </p>
 </div>
 <br>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Описание:</strong>
   <%= @article.description %>
 </p>
 
 <p>
-  <strong>Isnew:</strong>
+  <strong>Новость:</strong>
   <%= @article.isNew %>
 </p>
 
 <p>
-  <strong>Isreview:</strong>
+  <strong>Обзор:</strong>
   <%= @article.isReview %>
 </p>
 
 <p>
-  <strong>Onhomepage:</strong>
+  <strong>На главной:</strong>
   <%= @article.onHomePage %>
 </p>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<%= link_to 'Редактировать', edit_article_path(@article) %> |
+<%= link_to 'Назад к списку', articles_path %>

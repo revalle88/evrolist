@@ -12,31 +12,32 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label :'Название:' %><br>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :content %><br>
+    <%= f.label :'Содержание:' %><br>
    <%= f.cktext_area :content, :class => 'someclass', :ckeditor => {:language => 'ru'} %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label :'Краткое описание:' %><br>
     <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :isNew %><br>
-    <%= f.check_box :isNew %>
   </div>
   <div>
     <%= f.label "Картинка" %>
     <%= f.file_field :image %>
   </div>
   <div class="field">
-    <%= f.label :isReview %><br>
+    <%= f.label :'Новость:' %><br>
+    <%= f.check_box :isNew %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :'Обзорный материал:' %><br>
     <%= f.check_box :isReview %>
   </div>
   <div class="field">
-    <%= f.label :onHomePage %><br>
+    <%= f.label :"На главной:" %><br>
     <%= f.check_box :onHomePage %>
   </div>
   <div class="actions">
