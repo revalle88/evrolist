@@ -27,4 +27,12 @@
   <%=raw @article.content %>
 </p>
 </div>
+<div>
+<% if user_signed_in? %>
+   <br><br>
+  <%= link_to('редактировать', controller: "articles", action: "edit", id: @article.id) %>   
+  <br>   
+  <% end %>  
+</div>
+
 <br>
