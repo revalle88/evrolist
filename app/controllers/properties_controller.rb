@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
     layout 'admin'
+    before_filter :verify_is_admin
   before_action :set_property, only: [:show, :edit, :update, :destroy]
 
   # GET /properties
@@ -76,4 +77,11 @@ class PropertiesController < ApplicationController
     def property_params
       params.require(:property).permit(:name)
     end
+
+    private
+
+def verify_is_admin
+  (current_user.nil?) ? redirect_to(new_user_session_path) : (redirect_to(new_user_session_path) unless current_user.admin?)
+end
+
 end

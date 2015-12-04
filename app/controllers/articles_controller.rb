@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   layout 'admin'
+  before_filter :verify_is_admin
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+
 
   # GET /articles
   # GET /articles.json
@@ -72,4 +74,11 @@ class ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :content, :description, :isNew, :isReview, :onHomePage, :image)
     end
+
+    private
+
+def verify_is_admin
+  (current_user.nil?) ? redirect_to(new_user_session_path) : (redirect_to(new_user_session_path) unless current_user.admin?)
+end
+
 end

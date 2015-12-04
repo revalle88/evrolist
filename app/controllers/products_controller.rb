@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
     layout 'admin'
+    before_filter :verify_is_admin
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
@@ -103,7 +104,12 @@ class ProductsController < ApplicationController
       params.require(:product).permit(:name, :id1c, :descriptionFull, :descriptionMin, :articul, :baseUnit, :shtrihkod, :standart, :price, :rest, :category_id, :image)
     end
 
-    
+    private
+
+def verify_is_admin
+  (current_user.nil?) ? redirect_to(new_user_session_path) : (redirect_to(new_user_session_path) unless current_user.admin?)
+end
+
 
 
 

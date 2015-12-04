@@ -55,6 +55,9 @@ List::Application.routes.draw do
   #articles
   get 'content/show/:id', to: 'content#show'
 
+  #adminustration
+  get 'administration/', to: 'products#index'
+
 
 
 
