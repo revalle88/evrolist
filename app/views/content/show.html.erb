@@ -29,9 +29,11 @@
 </div>
 <div>
 <% if user_signed_in? %>
+	<% if current_user.admin? %>
    <br><br>
   <%= link_to('редактировать', controller: "articles", action: "edit", id: @article.id) %>   
   <br>   
+  <% end %>
   <% end %>  
 </div>
 

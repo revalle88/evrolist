@@ -19,7 +19,7 @@
 
 <% @news.each do |n| %>
 
-
+<div class = "newspunkt">
 <div style="background:#FFFFFF width:170px; float:left; margin-right:10px"><%= image_tag n.image.url(:thumb) %></div>
 
 
@@ -33,5 +33,5 @@
 </div>
 <div style="clear: both">
 </div>
-
+</div>
 <% end %>
