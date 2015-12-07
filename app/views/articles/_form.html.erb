@@ -15,9 +15,9 @@
     <%= f.label :'Название:' %><br>
     <%= f.text_field :title %>
   </div>
-  <div class="field">
+  <div data-no-turbolink>
     <%= f.label :'Содержание:' %><br>
-   <%= f.cktext_area :content, :class => 'someclass', :ckeditor => {:language => 'ru'} %>
+   <%= f.cktext_area :content, :class => 'someclass', :ckeditor => {:language => 'ru'} , :id =>"ckfield"%>
   </div>
   <div class="field">
     <%= f.label :'Краткое описание:' %><br>

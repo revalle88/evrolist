@@ -1,6 +1,10 @@
 List::Application.routes.draw do
   get 'content/news'
 
+  root 'content#home'
+
+
+
   mount Ckeditor::Engine => '/ckeditor'
   resources :articles
   get "test/createorder"
@@ -10,7 +14,7 @@ List::Application.routes.draw do
   get "carts/show"
   get "favourites/addToFavourites"
   get "favourites/showFavourites"
-  root 'catalog#root'
+  #root 'catalog#root'
   devise_for :users, controllers: {registrations: "registrations"}
   get "myxml/parseGoods"
   get "myxml/loadGoods"
@@ -54,6 +58,10 @@ List::Application.routes.draw do
 
   #articles
   get 'content/show/:id', to: 'content#show'
+  #homepage
+  get 'content/home', to: 'content#home'
+
+
 
   #adminustration
   get 'administration/', to: 'products#index'
