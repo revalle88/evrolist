@@ -51,16 +51,23 @@
 
 <%= form_tag "/catalog/search/", :method => 'get' do %>
   <p>
-    <%= text_field_tag :search, params[:search], class: "searchInput", size: 40 %> &nbsp&nbsp&nbsp
+    <%= text_field_tag :search, params[:search], class: "searchInput", size: 34 %> &nbsp&nbsp&nbsp
     <%= submit_tag "Найти", :name => nil %>
-    <%= link_to('новости', :controller => 'content', :action => 'news') %>
+
  </p>
+
+
 <% end %>
+
 
 
   <!-- <input type = "text" class = "searchInput" size = 40>&nbsp&nbsp&nbsp
   <input type="submit"  value = "Найти">-->
   </div><!-- .headerSearch-->
+  <div class = "topContentMenu">
+       <%= link_to('Новости', :controller => 'content', :action => 'news') %>&nbsp;
+        <%= link_to('Обзоры', :controller => 'content', :action => 'news') %>
+</div>
     
     </div><!-- .header-->
    <%= yield :catmenu %>

@@ -1,5 +1,7 @@
 /*
  *= require slimbox2
+ *= require chosen
+ *= require chosen/bootstrap
  */
 /* Eric Meyer's CSS Reset */
 html, body, div, span, applet, object, iframe,
@@ -176,6 +178,40 @@ background: -moz-linear-gradient(top,  #fcfcfd, #d8dcde); /* for firefox 3.6+ */
     width: 1000px;
 }
 
+.topContentMenu{
+	font-family: Helvetica, sans-serif;
+	font-size:13px;
+	color: #555555;
+	padding:10px 15px 10px 15px;
+	border: 5px solid #dddddd;
+	
+	height: 50px;
+    width: 170px;
+    left: 750px;
+	bottom: 20px;
+	/* Gradient background */
+	background: #ffffff;
+/*	background:#F4F4F4;
+	background: -moz-linear-gradient(top, #EEEEEE, #BBBBBB);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEEEEE), to(#BBBBBB));*/
+
+	/* Rounded Corners */
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
+	border-radius: 8px 8px 8px 8px;
+	position: absolute;
+	
+}
+
+.topContentMenu a{
+	text-decoration: none;
+	color: #444444;
+}
+
+.topContentMenu a:hover{
+	
+	color: #0000ee;
+}
 .makeorderIMG{
 	padding-top: 2px;
 	position: fixed;
@@ -795,4 +831,77 @@ input[type=submit]:hover{
 .favTableQuantity{
 	width: 120px;
 	overflow: hidden;
+}
+
+.article_products_separate{
+	font-size:11pt;
+	font-family:Helvetica;
+		
+	color: #000099;
+}
+
+.article_product_container{
+	width: 173px;
+	overflow: hidden;
+	height: 330px;
+	float: left;
+	margin: 1px;
+}
+
+.cartCounterArticleProduct{
+	width: 35px;
+	float: left;
+	margin-left: 5px;
+	margin-right: 15px;
+}
+
+.ArticleProducttoCartBtn{
+	display: block;
+	
+}
+
+.article_product_container{
+	border:1px solid #dddddd;
+}
+
+.article_product_name{
+
+	padding: 5px;
+	height: 35px;
+	overflow: hidden;
+
+}
+
+
+.article_product_name a{
+	font: 12px Helvetica;
+	color:  #444444 ;
+  text-decoration: none;
+}
+
+.article_product_name a:hover{
+	
+	color:  blue ;
+ 
+}
+
+.article_product_art{
+	padding: 5px;
+	height: 32px;
+	text-align: center;
+	font: 11px Helvetica;
+	color:  #585454 ;
+	overflow: hidden;
+}
+
+.article_product_price{
+	height: 19px;
+	text-align: center;
+	overflow: hidden;
+	margin: 0 10px 10px 10px;
+	font-size:12pt;
+	font-family:Helvetica;
+		
+	color:#585454;
+
 }

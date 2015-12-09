@@ -27,6 +27,11 @@
     <%= f.label "Картинка" %>
     <%= f.file_field :image %>
   </div>
+  <div>
+  <%= f.label :product_ids, "Товары, упоминаемые в статье" %><br>
+  <%= f.collection_select :product_ids, Product.order(:name), :id, :name, {}, {multiple: true, :class=>'chosen-select'} %>
+  </div>
+
   <div class="field">
     <%= f.label :'Новость:' %><br>
     <%= f.check_box :isNew %>
@@ -40,6 +45,7 @@
     <%= f.label :"На главной:" %><br>
     <%= f.check_box :onHomePage %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

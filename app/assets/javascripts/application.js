@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require ckeditor/init
 //= require slimbox2.min
+//= require chosen
 //= require turbolinks
 //= require_tree .
 

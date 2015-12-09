@@ -32,7 +32,12 @@
 <p>
   <strong>На главной:</strong>
   <%= @article.onHomePage %>
-</p>
+</p>  
+  <%= @articleProducts.each do |ap| %>
+ <%= ap.product.name %>
+ <br> 
+ 
+ <% end %>
 
 <%= link_to 'Редактировать', edit_article_path(@article) %> |
 <%= link_to 'Назад к списку', articles_path %>

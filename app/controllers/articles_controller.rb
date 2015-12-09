@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  layout 'admin'
+    layout 'admin'
   before_filter :verify_is_admin
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
@@ -7,12 +7,16 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
+      
     @articles = Article.all
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @articleProducts = ArticleProduct.where(article_id: params[:id])
+
+    
   end
 
   # GET /articles/new
@@ -43,6 +47,8 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+    puts "article params"
+    puts params[:product_ids]
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
@@ -72,7 +78,7 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :content, :description, :isNew, :isReview, :onHomePage, :image)
+      params.require(:article).permit(:title, :content, :description, :isNew, :isReview, :onHomePage, :image, :name, :product_ids => [])
     end
 
     private

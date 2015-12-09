@@ -17,8 +17,10 @@ end
   end
 
   def show
+    @order_item = current_order.order_items.new
   	@rootCats = Category.where(parent_id: nil)
     @categories = Category.all
     @article = Article.find(params[:id])
+    @articleProducts = ArticleProduct.where(article_id: params[:id])
   end
 end

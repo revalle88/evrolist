@@ -36,5 +36,42 @@
   <% end %>
   <% end %>  
 </div>
+<% unless @articleProducts.empty? %>
+<div class = "article_products_separate">
+<br>
+В тексте упоминаются следующие продукты: <hr align="left" width="700" size="1" color="#999999" />
+
+<br>
+</div>
+<% end %>
+
+<% @articleProducts.each do |ap| %>
+<div class = "article_product_container">
+<%= link_to image_tag(ap.product.image.url(:thumb), :class => "product_tab_img"), :action => 'product', :controller => 'catalog', :good_id => ap.product.id%>
+
+<div class = "article_product_name">
+<a href='/catalog/product/<%= ap.product.id%>'><%= ap.product.name %></a>
+</div>
+<div class = "article_product_art">
+Арт: <%= ap.product.articul %><br>
+</div>
+<div class = "article_product_price">
+<%= number_with_precision(ap.product.price, precision: 2) %>&nbspр.
+</div>
+<div class="article_product_to_cart">
+      
+      <%= form_for @order_item, remote: true do |f| %>
+     
+        <div class="input-group">
+          <%= f.number_field :quantity, value: 1, class: "cartCounterArticleProduct", min: 1 %>
+          <%= f.hidden_field :product_id, value: ap.product.id %>
+
+          <%= image_submit_tag('to_cart.png', :class => "ArticleProducttoCartBtn  " )%>
+         
+        </div>
+      <% end %>
+    </div>
+</div>
+<% end %>
 
 <br>

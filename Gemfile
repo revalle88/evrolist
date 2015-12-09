@@ -17,7 +17,11 @@ gem 'devise'
 
 gem 'slimbox2-rails'
 
+gem 'chosen-awesome-rails'
+
+
 gem 'jquery-turbolinks'
+
 
 # Use postgresql as the database for Active Record
 gem 'pg'
