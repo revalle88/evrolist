@@ -1020,3 +1020,44 @@ width: 340px;
 	
 	
 }
+
+
+
+/*choiceOfTheWeek*/
+
+.choiceOfTheWeekContainer{
+	border-right: 1px solid #cccccc;
+	float: left;
+	width: 232px;
+}
+
+.weekChoicePrice{
+	float: left;
+	font-size:18px;
+	color: red;
+	margin: 3px 10px 5px 15px;	 
+}
+
+.choiceOfTheWeekHeader{
+
+	border-top: 1px dotted #999999;	
+	background: #eeeeee;
+	width: 690px;
+	/*margin: 5px 0px 10px 10px;*/
+	padding:  10px 0px 10px 10px;
+	font-size:15px;
+	color: #333333;
+	margin-bottom: 10px;
+	/*margin: 1px 10px 10px 25px;	*/ 
+}
+.weekChoiceTitle{
+	float: right;
+	color: #333333;
+	margin: 3px 10px 5px 5px;	 
+}
+
+.weekChoiceTitle a{
+	text-decoration: none; 
+	color: #333333;
+}
+

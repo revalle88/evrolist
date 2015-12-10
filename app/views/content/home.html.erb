@@ -33,6 +33,33 @@
   <% end %>  
 </div>
 <br>
+
+<div class = "choiceOfTheWeek">
+<div class = "choiceOfTheWeekHeader">
+Выбор недели
+<div class = "weekchoiceSeparator">
+</div>
+</div>
+
+<div class = "choicesOfTheWeekContainer">
+<% @weekChoices.each do |weekChoice| %>
+  <div class = "choiceOfTheWeekContainer">
+  <div style="background:#FFFFFF width:170px; float:left; margin: 5px 5px 5px 17px;"><%= image_tag weekChoice.image.url(:weekchoice) %></div>
+  <div class = "">
+    <div class = "weekChoicePrice"><strong>от 199.-</strong></div>
+    <div class = "weekChoiceTitle"><%= link_to weekChoice.title, :action => 'show', :controller => 'content', :id => weekChoice.id %></div>
+    </div>
+  </div>
+<% end %>
+
+
+</div>
+</div>
+
+<div style="clear: both"></div>
+<br>
+
+
 <div class = "homeNews">
 <div class = "homeNewsHeader">
 <%= link_to 'Новости компании', :action => 'news', :controller => 'content' %>

@@ -7,7 +7,7 @@ def home
     @news = Article.where(isNew: true).limit(2)
     @reviews = Article.where(isReview: true).limit(2)
     @article = Article.where(onHomePage: true).first
-
+    @weekChoices = Article.where(isReview: true).limit(3)
 end
   
   def news
