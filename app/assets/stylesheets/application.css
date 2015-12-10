@@ -570,6 +570,7 @@ input[type=submit]:hover{
 .product_tab{
 	float:left;
 	width:220px;
+	height:400px;
 	margin:0px 10px 10px auto;
 	border:5px solid #eeeeee;
 }
@@ -904,4 +905,118 @@ input[type=submit]:hover{
 		
 	color:#585454;
 
+}
+
+.homeNews{
+	/*border: 1px solid #dddddd;*/
+	float: left;
+	width: 355px;
+	margin-right: 5px;
+}
+
+.homeNewsHeader{
+	border-top: 1px dotted #999999;	
+	background: #eeeeee;
+	/*margin: 5px 0px 10px 10px;*/
+	padding:  10px 0px 10px 10px;
+
+}
+
+.homeNewsHeader a{
+	text-decoration: none;
+    font-family: Helvetica, sans-serif;
+	font-size:14px;
+	color: #333333;
+}
+
+.homeNewsHeader a:hover{
+	color: #0048ee;
+}
+
+.homeReviewsHeader{
+	border-top: 1px dotted #999999;	
+	background: #eeeeee;
+	/*margin: 5px 0px 10px 10px;*/
+	padding:  10px 0px 10px 10px;
+
+}
+
+
+.homeReviewsHeader a{
+	text-decoration: none;
+    font-family: Helvetica, sans-serif;
+	font-size:14px;
+	color: #333333;
+}
+
+.homeReviewsHeader a:hover{
+	color: #0048ee;
+}
+
+.homeNewsTitle{
+	font-family: Helvetica, sans-serif;
+	font-size:14px;
+	color: #333333;
+	width: 320px;
+	margin: 0 5px 5px 15px
+}
+
+
+
+
+.homeReviews{
+	/*	border:1px solid #dddddd;*/
+	float: left;
+width: 340px;	
+}
+
+.homeNewsContainer{
+	font-family: Helvetica, sans-serif;
+	font-size:13px;
+	color: #555555;
+	padding:10px 5px 10px 15px;
+
+	border: 1px solid #dddddd;
+	
+	
+    width: 335px;	
+   
+	/* Gradient background */
+	background: #ffffff;
+/*	background:#F4F4F4;
+	background: -moz-linear-gradient(top, #EEEEEE, #BBBBBB);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEEEEE), to(#BBBBBB));*/
+
+	/* Rounded Corners */
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
+	border-radius: 8px 8px 8px 8px;
+	
+	
+}
+
+
+.homeReviewsContainer{
+	font-family: Helvetica, sans-serif;
+	font-size:13px;
+	color: #555555;
+	padding:10px 5px 10px 15px;
+
+	border: 1px solid #dddddd;
+	
+	
+    width: 320px;	
+   
+	/* Gradient background */
+	background: #ffffff;
+/*	background:#F4F4F4;
+	background: -moz-linear-gradient(top, #EEEEEE, #BBBBBB);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEEEEE), to(#BBBBBB));*/
+
+	/* Rounded Corners */
+	-moz-border-radius: 8px 8px 8px 8px;
+	-webkit-border-radius: 8px 8px 8px 8px;
+	border-radius: 8px 8px 8px 8px;
+	
+	
 }

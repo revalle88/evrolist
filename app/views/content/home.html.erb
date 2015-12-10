@@ -32,21 +32,22 @@
   <% end %>
   <% end %>  
 </div>
-
 <br>
-<h3>Новости компании</h3>
-<br>
-
+<div class = "homeNews">
+<div class = "homeNewsHeader">
+<%= link_to 'Новости компании', :action => 'news', :controller => 'content' %>
+</div>
+<div class = "homeNewsContainer">
 <% @news.each do |n| %>
 
 <div class = "newspunkt">
 <div style="background:#FFFFFF width:170px; float:left; margin-right:10px"><%= image_tag n.image.url(:thumb) %></div>
 
 
-<div style="width:600px; margin-left:15px;">
- <h3><%= n.title %></h3>
+<div class = "homeNewsTitle" style="width:320px; margin-left:15px;">
+ <strong><%= n.title %></strong>
 </div>
-<div style="width:600px; margin-left:15px; ">
+<div class = "homeNewsDescription" style="width:320px; margin-left:15px; ">
 <%= n.description %>
 <br>
 <%= link_to 'подробнее...', :action => 'show', :controller => 'content', :id => n.id %>
@@ -55,25 +56,27 @@
 </div>
 </div>
 <% end %>
-<br>
-<%= link_to 'все новости', :action => 'news', :controller => 'content' %>
 
 
+</div>
+</div>
 
-<br>
-<h3>Новости ассортимента</h3>
-<br>
 
+<div class = "homeReviews">
+<div class = "homeReviewsHeader">
+<%= link_to 'Новости ассортимента', :action => 'news', :controller => 'content' %>
+</div>
+<div class = "homeReviewsContainer">
 <% @reviews.each do |r| %>
 
 <div class = "newspunkt">
 <div style="background:#FFFFFF width:170px; float:left; margin-right:10px"><%= image_tag r.image.url(:thumb) %></div>
 
 
-<div style="width:600px; margin-left:15px;">
- <h3><%= r.title %></h3>
+<div class = "homeNewsTitle" style="width:320px; margin-left:15px;">
+ <strong><%= r.title %></strong>
 </div>
-<div style="width:600px; margin-left:15px; ">
+<div class = "homeNewsDescription" style="width:320px; margin-left:15px; ">
 <%= r.description %>
 <br>
 <%= link_to 'подробнее...', :action => 'show', :controller => 'content', :id => r.id %>
@@ -82,7 +85,9 @@
 </div>
 </div>
 <% end %>
-<br>
-<%= link_to 'все новости', :action => 'news', :controller => 'content' %>
+
+
+</div>
+</div>
 
 
