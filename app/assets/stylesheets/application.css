@@ -381,6 +381,8 @@ input[type=submit]:hover{
 	padding:10px 15px 10px 15px;
 	border:1px solid #777777;
 	border-top:none;
+	height: 1px;
+	overflow: hidden;
 	
 	/* Gradient background */
 	background: #ffffff;
@@ -405,6 +407,7 @@ input[type=submit]:hover{
 #menu li:hover .dropdown_3columns,
 #menu li:hover .dropdown_4columns,
 #menu li:hover .dropdown_5columns {
+	height: auto;
 	left:-1px;
 	z-index:800;
 	position: absolute;
