@@ -46,7 +46,7 @@
   <div class = "choiceOfTheWeekContainer">
   <div style="background:#FFFFFF width:170px; float:left; margin: 5px 5px 5px 17px;"><%= image_tag weekChoice.image.url(:weekchoice) %></div>
   <div class = "">
-    <div class = "weekChoicePrice"><strong>от 199.-</strong></div>
+    <div class = "weekChoicePrice"><strong>от <%= weekChoiceMinPrice(weekChoice) %>.-</strong></div>
     <div class = "weekChoiceTitle"><%= link_to weekChoice.title, :action => 'show', :controller => 'content', :id => weekChoice.id %></div>
     </div>
   </div>
@@ -74,11 +74,12 @@
 <div class = "homeNewsTitle" style="width:320px; margin-left:15px;">
  <strong><%= n.title %></strong>
 </div>
-<div class = "homeNewsDescription" style="width:320px; margin-left:15px; ">
+<div class = "homeNewsDescription">
 <%= n.description %>
 <br>
-<%= link_to 'подробнее...', :action => 'show', :controller => 'content', :id => n.id %>
+
 </div>
+<%= link_to 'подробнее...', :action => 'show', :controller => 'content', :id => n.id %>
 <div style="clear: both">
 </div>
 </div>
@@ -97,17 +98,18 @@
 <% @reviews.each do |r| %>
 
 <div class = "newspunkt">
-<div style="background:#FFFFFF width:170px; float:left; margin-right:10px"><%= image_tag r.image.url(:thumb) %></div>
+<div style="background:#FFFFFF width:170px;  float:left; margin-right:10px"><%= image_tag r.image.url(:thumb) %></div>
 
 
 <div class = "homeNewsTitle" style="width:320px; margin-left:15px;">
  <strong><%= r.title %></strong>
 </div>
-<div class = "homeNewsDescription" style="width:320px; margin-left:15px; ">
+<div class = "homeNewsDescription">
 <%= r.description %>
-<br>
-<%= link_to 'подробнее...', :action => 'show', :controller => 'content', :id => r.id %>
+
+
 </div>
+<%= link_to 'подробнее...', :action => 'show', :controller => 'content', :id => r.id %>
 <div style="clear: both">
 </div>
 </div>
