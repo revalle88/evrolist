@@ -1,0 +1,25 @@
+ Соединяемся с сервисом http://list-lider.ru:18060/ut/ws/Exchange?wsdl
+ <br>
+ <br>
+ Доступные Методы: <%= @operations %>
+ <br>
+ Ошибки: <%= @errormessage %>
+ <br>
+  <br>
+ Вызываем метод get_functional_option, name: "ПрефиксИнформационнойБазы"
+  <br>
+ Ошибки: <%= @errormessage1 %>
+ <br>
+  <br>
+ Вызываем метод GetFunctionalOption
+  <br>
+ Ошибки: <%= @errormessage2 %>
+ <br>
+  <br>
+   <br>
+ 
+
+
+ Успешный ответ от сервиса:
+ <br>
+ <%= @savonresponse = response.body %>

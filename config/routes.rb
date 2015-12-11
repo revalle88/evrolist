@@ -66,6 +66,9 @@ List::Application.routes.draw do
   #adminustration
   get 'administration/', to: 'products#index'
 
+  #savon
+  get 'savontest/', to: 'savon#savontest'
+
 
 
 
