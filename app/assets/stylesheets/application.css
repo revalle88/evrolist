@@ -1,5 +1,6 @@
 /*
  *= require slimbox2
+ *= require jquery-ui
  *= require chosen
  *= require chosen/bootstrap
  */
@@ -1071,5 +1072,31 @@ width: 340px;
 	
 	height: 55px; 
 	overflow: hidden;
+}
+.catalog_filter{
+	font-family: Helvetica;
+padding:  10px 0px 10px 10px;
+}
+
+.filter_header{
+	font-family: Helvetica, sans-serif;
+	font-size:13px;
+	color: #555555;
+    border-top: 1px dotted #777777;	
+	background: #eeeeee;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	/*margin: 5px 0px 10px 10px;*/
+	padding:  10px 0px 10px 10px;
+
+}
+
+.filter_min_price{
+	margin-right: 10px;
+	float: left;
+}
+
+#the_slider{
+	width:220px;
 }
 

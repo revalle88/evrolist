@@ -18,12 +18,45 @@
 
 
 <% end %>
+
+<% content_for :filter do %>
+
+<div class = "filter_header">
+Подбор товара
+</div>
+<div class = "catalog_filter">
+<%= form_tag "/catalog/filter/", :method => 'get' do %>
+  <p>Цена, руб.<br><br>
+  <%= hidden_field_tag :cat_id, @cat.id %> 
+  <%= hidden_field_tag :slider_max, params[:slider_max], value: @slider_max %> 
+  <div class = "filter_min_price">
+  от:   <%= text_field_tag :min_price, params[:min_price], value: @minPrice, size: 4 %> 
+  </div>
+  <div class = "filter_max_price">
+  до:   <%= text_field_tag :max_price, params[:max_price], value: @maxPrice, size: 4 %> 
+  </div>
+  <br>
+   
+    
+  <div id="the_slider"></div> 
+  <br>
+    <%= submit_tag "фильтр", :name => nil %>
+   
+ </p>
+<% end %>
+</div>
+
+
+
+<%end%>
+
+
 <script>
 $(document).ready ( function () {
-	//alert("doc ready!")  
+  //alert("doc ready!")  
     $(document).on ("click", ".toFav", function () {
       var clicked = this.id
-    	var clickid = this.id.substring(3);
+      var clickid = this.id.substring(3);
         //alert("hi"+clickid);
          $.ajax({
         url: "/favourites/addToFavourites",
@@ -48,7 +81,28 @@ $(document).ready ( function () {
     })
     
     });
+ var maxSlide =  $("#max_price").val();
+ var minSlide =  $("#min_price").val();
+ var sliderMax =  $("#slider_max").val();
+ var slider = $("#the_slider").slider({
+       
+        range: true,
+        min: 0,
+        max: sliderMax,
+        values: [minSlide, maxSlide],
+        slide: function(event, ui) {
+            $("#min_price").val(ui.values[0]);
+            $("#max_price").val(ui.values[1]);
+        }
+    });
+    //$("#min_price").val(slider.slider("values")[0]);
+   // $("#max_price").val(slider.slider("values")[1]);
+
+
 });
+
+
+
 
 </script>
 

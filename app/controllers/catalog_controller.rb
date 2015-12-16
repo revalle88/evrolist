@@ -19,6 +19,20 @@ class CatalogController < ApplicationController
     ##cart
     @order_item = current_order.order_items.new
 
+    #sliderPrice set
+    catPrices = []
+    @catProducts.each do |cp|
+
+       
+          catPrices.push(cp.price)
+
+      
+    end
+    @maxPrice = catPrices.max
+    @minPrice = catPrices.min
+    @slider_max = catPrices.max
+    
+
   end
 
   def product
@@ -42,6 +56,30 @@ class CatalogController < ApplicationController
     @catProducts = Product.search(params[:search]).page(params[:page]).per_page(12)
     @order_item = current_order.order_items.new
     @order_item = current_order.order_items.new
+  end
+  def filter 
+    @rootCats = Category.where(parent_id: nil)
+    @categories = Category.all
+    @cat = Category.find(params[:cat_id])
+
+    #@catProducts = Product.where(category_id: params[:cat_id], price: [>1.19]).page(params[:page]).per_page(12)
+
+    @catProducts = Product.where("category_id=? AND price >= ? AND price <= ?", params[:cat_id],  params[:min_price],  params[:max_price]).page(params[:page]).per_page(12)
+
+    puts "sjldkfjdlkf"
+    puts params[:cat_id]
+    ##cart
+    @order_item = current_order.order_items.new
+
+
+    #slider set
+    
+    @maxPrice = params[:max_price]
+    @minPrice = params[:min_price] 
+    @slider_max = params[:slider_max] 
+   
+    #render
+    render :show
   end
   
 end

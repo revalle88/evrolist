@@ -26,6 +26,8 @@ List::Application.routes.draw do
   get "favourites/destroy"
   get "catalog/root"
   get "catalog/search", to: 'catalog#search', as: 'search_products'
+  get "catalog/filter", to: 'catalog#filter', as: 'filter_products'
+ 
   resources :properties
 
   get "test/clearSession"
