@@ -22,6 +22,8 @@ List::Application.routes.draw do
   get "myxml/parseXMLcats"
   get "myxml/loadCategories"
   get "myxml/updatePrices"
+  get "myxml/updateRests"
+  get "myxml/deleteImageTest"
   get "favourites/deleteSession"
   get "favourites/destroy"
   get "catalog/root"
@@ -70,6 +72,10 @@ List::Application.routes.draw do
 
   #savon
   get 'savontest/', to: 'savon#savontest'
+
+  post 'get_file_from_1c', to: 'myxml#get_file_from_1c'
+   post 'import_all', to: 'myxml#import_all'
+  get 'send_zip/', to: 'myxml#send_zip'
 
 
 

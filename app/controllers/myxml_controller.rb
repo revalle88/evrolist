@@ -1,5 +1,7 @@
-require 'nokogiri'
+#require 'nokogiri'
+require 'rest_client'
 class MyxmlController < ApplicationController
+  skip_before_filter :verify_authenticity_token
 	def parseXMLcats
       doc = File.open("blossom.xml") { |f| Nokogiri::XML(f) }
       root = doc.root;
@@ -12,8 +14,9 @@ class MyxmlController < ApplicationController
 	   @cnt =  @rootGroups.count
 
   end
-  def loadCategories
-  		doc = File.open("blossom.xml") { |f| Nokogiri::XML(f) }
+  def loadCategories(file_name)
+  		doc = File.open(file_name) { |f| Nokogiri::XML(f) }
+      doc.remove_namespaces!
   		root = doc.root;
       	groups=root.at_xpath("//Классификатор//Группы")
       	@rootGroups = groups.element_children
@@ -26,6 +29,12 @@ class MyxmlController < ApplicationController
       			category.name = catName
       			category.id1c = id1c 
       			category.save
+          else
+            puts "Category not exists"
+            category = Category.where(:id1c => id1c).first
+            category.name = catName
+            category.id1c = id1c 
+            category.save
       		end
       		loadChildCategories(gruppa)
 
@@ -53,6 +62,16 @@ class MyxmlController < ApplicationController
       			category.save
       			
       			r.reload
+            else
+              puts "child category exists"
+            r = Category.find_by_id1c(parent1c)
+            category = Category.where(:id1c => id1c).first
+            category.name = catName
+            category.id1c = id1c 
+            category.parent_id = r.id
+            category.save
+            
+            r.reload
       		end
       		loadChildCategories(gruppa)
       		
@@ -81,8 +100,9 @@ class MyxmlController < ApplicationController
           
     end
 
-    def loadGoods
-    	doc = File.open("import.xml") { |f| Nokogiri::XML(f) }
+    def loadGoods(file_name)
+    	doc = File.open(file_name) { |f| Nokogiri::XML(f) }
+      doc.remove_namespaces!
   		root = doc.root;
       	goods=root.xpath("//Каталог//Товары")
       	@childGoods = goods.children
@@ -90,8 +110,12 @@ class MyxmlController < ApplicationController
       		id1c = good.xpath('Ид').inner_text 
       		goodName = good.xpath('Наименование').inner_text
       		if !(Product.exists?(:id1c => id1c)) then
-      			puts "Product not exists"
-				product = Product.new
+      	 	puts "Product not exists"
+				  product = Product.new
+        else
+        puts "Product exists"
+         product = Product.where(:id1c => id1c).first
+        end
 				product.name = goodName
 				product.descriptionFull = goodName
 				product.descriptionMin = goodName
@@ -104,13 +128,14 @@ class MyxmlController < ApplicationController
 				end
 
       			product.save
-      		end
-      	end
+      		#end #
+      	end #@childGoods.each do |good|
 
     end
 
-    def loadProductImages
-    	doc = File.open("import.xml") { |f| Nokogiri::XML(f) }
+    def loadProductImages(file_name)
+    	doc = File.open(file_name) { |f| Nokogiri::XML(f) }
+      doc.remove_namespaces!
   		root = doc.root;
       	goods=root.xpath("//Каталог//Товары")
       	@childGoods = goods.children
@@ -119,6 +144,8 @@ class MyxmlController < ApplicationController
       	goodName = good.xpath('Наименование').inner_text
       	if (Product.exists?(:id1c => id1c)) then
       		product = Product.find_by_id1c(id1c)
+          product.image = nil
+          product.save
       		good.xpath('ЗначенияРеквизитов').children.each do |req|
       			if req.xpath('Наименование').inner_text == "Код" then
       				product.image_from_url("http://evrolist.ru/components/com_virtuemart/shop_image/product/my_"+req.xpath('Значение').inner_text+".jpg")
@@ -129,8 +156,16 @@ class MyxmlController < ApplicationController
       end
     end
 
-    def updatePrices
-      doc = File.open("prices.xml") { |f| Nokogiri::XML(f) }
+    def deleteImageTest
+      product = Product.find(3708)
+      product.image = nil
+      product.save
+    end
+
+    def updatePrices(file_name)
+
+      doc = File.open(file_name) { |f| Nokogiri::XML(f) }
+      doc.remove_namespaces!
       root = doc.root;
       test = root.xpath('ПакетПредложений')
       
@@ -180,5 +215,127 @@ class MyxmlController < ApplicationController
 
 
     end
+
+    def updateRests(file_name)
+      doc = File.open(file_name) { |f| Nokogiri::XML(f) }
+      doc.remove_namespaces!
+      root = doc.root;
+      testOffers = root.xpath("//ПакетПредложений//Предложения//Предложение")
+       testOffers.each do |testOffer|
+          id1c = testOffer.xpath('Ид').inner_text 
+         # puts id1c
+           if (Product.exists?(:id1c => id1c)) then
+              product = Product.find_by_id1c(id1c)
+              testRests = testOffer.xpath('Остатки').children
+              val = 0
+              testRests.each do |testRest|
+                 val = val + testRest.xpath('Склад//Количество').inner_text.to_f
+                 #puts testRest.xpath('Склад//Количество').inner_text
+
+              end
+              product.rest = val 
+              product.save
+              puts "Rests"
+               puts val
+           end
+         
+       end
+    end
+
+    def get_file_from_1c
+   puts "get_file_from_1c get_file_from_1c get_file_from_1c get_file_from_1c get_file_from_1c"
+   FileUtils.rm_rf(Dir.glob("#{Rails.root}/tmp/1cExchange/*"))
+   request.body.rewind
+   tmp_file = "#{Rails.root}/tmp/1cExchange/import.rar"
+   puts tmp_file
+    File.open(tmp_file, 'wb') do |f|
+    f.write  request.body.read
+    puts "file saved"
+   end
+   #rar x archive.rar path/to/extract/to
+   system("unrar x "+tmp_file+" #{Rails.root}/tmp/1cExchange/")
+    #system('unrar l '+tmp_file)
+     puts "file unpacked!!!!"
+
+     files = Dir.glob("#{Rails.root}/tmp/1cExchange/1/webdata/000000002/goods/1/*.xml")
+     puts files[1]
+     file_name = files[2]
+
+
+     ###############load goods######################
+     loadGoods(file_name)
+
+
+
+file_name = files[1]
+     #load goods################################
+
+     updatePrices(file_name)
+   #############################
+   file = request.body.read
+   #file.force_encoding('UTF-8')
+   puts "1"
+  return nil if file.blank?
+  puts "2"
+      temp = Tempfile.new(['import', '.rar'])
+      puts "3"
+      temp.write file
+      puts "4"
+      puts temp.path
+      temp.rewind
+      temp
+  end
+
+  def send_zip
+    RestClient.get 'http://localhost:3000/'
+   #RestClient.post 'http://localhost:3000/get_file_from_1c', :name_of_file_param => File.new('/home/vladimir/bszip.zip')
+   # RestClient.post('http://localhost:3000/get_file_from_1c', 
+   #:name_of_file_param => File.new('/home/vladimir/bszip.zip'))
+   
+  end
+
+  def import_all
+   FileUtils.rm_rf(Dir.glob("#{Rails.root}/tmp/1cExchange/*"))
+   request.body.rewind
+   tmp_file = "#{Rails.root}/tmp/1cExchange/import.rar"
+   puts tmp_file
+    File.open(tmp_file, 'wb') do |f|
+    f.write  request.body.read
+    puts "file saved"
+   end
+  
+   system("unrar x "+tmp_file+" #{Rails.root}/tmp/1cExchange/")
+ 
+     puts "file unpacked!!!!"
+     catFiles = Dir.glob("#{Rails.root}/tmp/1cExchange/export1/1/webdata/000000002/*.xml").sort
+     file_name = catFiles[0]
+     puts "file xml for categories"
+     puts file_name
+     #loadCategories(file_name)
+
+      Dir.glob("#{Rails.root}/tmp/1cExchange/export1/1/webdata/000000002/goods/*") do |folder|
+        files = Dir.glob(folder +"/*.xml").sort
+         puts "files[0]"
+         puts files[0]
+         puts "files[1]"
+         puts files[1]
+         puts "files[2]"
+         puts files[2]
+        file_name = files[0]
+         #loadGoods(file_name)
+         loadProductImages(file_name)
+         file_name = files[1]
+        # updatePrices(file_name)
+         file_name = files[2]
+         #updateRests(file_name)
+
+
+   
+        #puts folder
+      end
+      # puts "Entries"
+    # puts Dir.glob("#{Rails.root}/tmp/1cExchange/1/webdata/000000002/goods/*").entries()
+
+  end
   
 end
