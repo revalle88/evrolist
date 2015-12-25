@@ -323,7 +323,7 @@ file_name = files[1]
          puts files[2]
         file_name = files[0]
          #loadGoods(file_name)
-         loadProductImages(file_name)
+         #loadProductImages(file_name)
          file_name = files[1]
         # updatePrices(file_name)
          file_name = files[2]

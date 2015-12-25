@@ -14,14 +14,15 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
+#
 development:
   adapter: postgresql
   encoding: unicode
   database: list_dev
   host: localhost
   pool: 5
-  username: list
-  password: list
+  username: deploy
+  password: gliA6kkvn
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
