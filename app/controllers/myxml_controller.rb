@@ -312,7 +312,7 @@ file_name = files[1]
      file_name = catFiles[0]
      puts "file xml for categories"
      puts file_name
-     #loadCategories(file_name)
+     loadCategories(file_name)
 
       Dir.glob("#{Rails.root}/tmp/1cExchange/export1/1/webdata/000000002/goods/*") do |folder|
         files = Dir.glob(folder +"/*.xml").sort

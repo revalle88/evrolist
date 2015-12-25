@@ -22,7 +22,7 @@
   </div>
   <div class="field">
 <%= f.label :parent_id %><br>
-<%= select("category", "parent_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
+<%= select("category", "parent_id", Category.all.order('name ASC').collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
 </div>
   <div class="field">
     <%= f.label :image %><br>
