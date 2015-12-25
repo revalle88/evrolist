@@ -304,8 +304,8 @@ file_name = files[1]
     f.write  request.body.read
     puts "file saved"
    end
-  
-   system("rar x "+tmp_file+" #{Rails.root}/tmp/1cExchange/")
+  system("unzip "+tmp_file+" -d #{Rails.root}/tmp/1cExchange/")
+   #system("rar x "+tmp_file+" #{Rails.root}/tmp/1cExchange/")
  
      puts "file unpacked!!!!"
      catFiles = Dir.glob("#{Rails.root}/tmp/1cExchange/export1/1/webdata/000000002/*.xml").sort
