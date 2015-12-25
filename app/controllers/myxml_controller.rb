@@ -295,7 +295,8 @@ file_name = files[1]
   end
 
   def import_all
-   FileUtils.rm_rf(Dir.glob("#{Rails.root}/tmp/1cExchange/*"))
+   FileUtils.rm_rf(Dir.glob("#{Rails.root}/tmp/1cExchange"))
+   Dir.mkdir "#{Rails.root}/tmp/1cExchange"
    request.body.rewind
    tmp_file = "#{Rails.root}/tmp/1cExchange/import.rar"
    puts tmp_file
