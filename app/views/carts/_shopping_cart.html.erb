@@ -1,3 +1,21 @@
+<script>
+$(document).ready ( function () {
+$("#pay_btn").click(function() {
+  alert("clicked!"); 
+   $.ajax({
+      url: "/static_pages/fileopen",
+      type: "POST",
+      data: {name: $(this).val()},
+      success: function (data) { 
+          // append data to your page
+          $("page_element").html(data);
+      }
+  });
+ alert("ajax done!"); 
+});
+});
+</script>
+
 <% if !@order_item.nil? && @order_item.errors.any? %>
   <div class="alert alert-danger">
     <ul>
@@ -37,4 +55,18 @@
     <%= render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
   <% end %>
   </table>
+  <br>
+  Общая сумма заказа: <%= @current_order.subtotal %> руб. <br><br>
+  <form action="<%= @pay_desc['mrh_url'] %>" method="post">
+  <input type=hidden name=MrchLogin value="<%= @pay_desc['mrh_login'] %>">
+  <input type=hidden name=OutSum value="<%= @pay_desc['out_summ'] %>">
+  <input type=hidden name=InvId value="<%= @pay_desc['inv_id'] %>">
+  <input type=hidden name=Desc value="<%= @pay_desc['inv_desc'] %>">
+  <input type=hidden name=SignatureValue value="<%= @pay_desc['crc'] %>">
+  <input type=hidden name=Shp_item value="<%= @pay_desc['shp_item'] %>">
+  <input type=hidden name=IncCurrLabel value="<%= @pay_desc['in_curr'] %>">
+  <input type=hidden name=Culture value="<%= @pay_desc['culture'] %>">
+  <input type=hidden name=IsTest value="<%= @pay_desc['isTest'] %>">
+  <input type=submit value='Оплатить' id = "pay_btn">
+</form>
 <% end %>

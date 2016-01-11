@@ -1,0 +1,14 @@
+<h1>Payments#pay</h1>
+<p>Find me in app/views/payments/pay.html.erb</p>
+<form action="<%= @pay_desc['mrh_url'] %>" method="post">
+	<input type=hidden name=MrchLogin value="<%= @pay_desc['mrh_login'] %>">
+	<input type=hidden name=OutSum value="<%= @pay_desc['out_summ'] %>">
+	<input type=hidden name=InvId value="<%= @pay_desc['inv_id'] %>">
+	<input type=hidden name=Desc value="<%= @pay_desc['inv_desc'] %>">
+	<input type=hidden name=SignatureValue value="<%= @pay_desc['crc'] %>">
+	<input type=hidden name=Shp_item value="<%= @pay_desc['shp_item'] %>">
+	<input type=hidden name=IncCurrLabel value="<%= @pay_desc['in_curr'] %>">
+	<input type=hidden name=Culture value="<%= @pay_desc['culture'] %>">
+	<input type=hidden name=IsTest value="<%= @pay_desc['isTest'] %>">
+	<input type=submit value='Оплатить'>
+</form>

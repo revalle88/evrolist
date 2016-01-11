@@ -1,4 +1,12 @@
 List::Application.routes.draw do
+  get 'payments/pay'
+
+  get 'payments/result'
+
+  get 'payments/success'
+
+  get 'payments/fails'
+
   get 'content/news'
 
   root 'content#home'
