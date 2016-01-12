@@ -1,14 +1,27 @@
 <script>
 $(document).ready ( function () {
-$("#pay_btn").click(function() {
+  
+
+$("#pay_btn").click(function (e) {
+  e.preventDefault();
+   //$("#payform").submit(function (e) {
+   
   alert("clicked!"); 
    $.ajax({
-      url: "/static_pages/fileopen",
+      url: "/wscheckorder/",
       type: "POST",
-      data: {name: $(this).val()},
+      data: {orderId: $("#orderId").val()},
       success: function (data) { 
-          // append data to your page
-          $("page_element").html(data);
+          if (data == "ЦБ"){
+            $("#page_element").html(data);
+           $("#payform").submit();
+             
+          }
+          else
+          {
+             $("#page_element").html(data);
+          }// append data to your page
+         
       }
   });
  alert("ajax done!"); 
@@ -57,10 +70,10 @@ $("#pay_btn").click(function() {
   </table>
   <br>
   Общая сумма заказа: <%= @current_order.subtotal %> руб. <br><br>
-  <form action="<%= @pay_desc['mrh_url'] %>" method="post">
+  <form action="<%= @pay_desc['mrh_url'] %>" method="post" id = "payform">
   <input type=hidden name=MrchLogin value="<%= @pay_desc['mrh_login'] %>">
   <input type=hidden name=OutSum value="<%= @pay_desc['out_summ'] %>">
-  <input type=hidden name=InvId value="<%= @pay_desc['inv_id'] %>">
+  <input type=hidden id = "orderId" name=InvId value="<%= @pay_desc['inv_id'] %>">
   <input type=hidden name=Desc value="<%= @pay_desc['inv_desc'] %>">
   <input type=hidden name=SignatureValue value="<%= @pay_desc['crc'] %>">
   <input type=hidden name=Shp_item value="<%= @pay_desc['shp_item'] %>">
@@ -69,4 +82,5 @@ $("#pay_btn").click(function() {
   <input type=hidden name=IsTest value="<%= @pay_desc['isTest'] %>">
   <input type=submit value='Оплатить' id = "pay_btn">
 </form>
+<div id = "page_element" name = "page_element"></div>
 <% end %>

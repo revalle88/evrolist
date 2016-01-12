@@ -80,6 +80,7 @@ List::Application.routes.draw do
 
   #savon
   get 'savontest/', to: 'savon#savontest'
+  post 'wscheckorder', to: 'savon#wscheckorder'
 
   post 'get_file_from_1c', to: 'myxml#get_file_from_1c'
    post 'import_all', to: 'myxml#import_all'
