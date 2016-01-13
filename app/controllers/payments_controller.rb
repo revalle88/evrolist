@@ -46,6 +46,11 @@ class PaymentsController < ApplicationController
       
       @order.order_status_id = 2
       @order.save
+      Rails.logger.info "SignatureValue: "
+      Rails.logger.info params['SignatureValue']
+       Rails.logger.info "crc: "
+      Rails.logger.info crc
+
       # ...
       # говорим робокассе, что все хорошо
       @result = "OK#{params['InvId']}"

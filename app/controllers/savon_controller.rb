@@ -69,6 +69,7 @@ class SavonController < ApplicationController
 		@opsString = @ops.build(message: { Name: "ПрефиксИнформационнойБазы" }).to_s
 		puts params[:orderId]
 		puts "REQUEST REQUEST REQUEST"
+
 		puts @opsString
 		
 	rescue Exception => e
