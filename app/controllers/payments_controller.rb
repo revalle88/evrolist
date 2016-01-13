@@ -44,7 +44,7 @@ class PaymentsController < ApplicationController
       break if @order.blank? || @order.subtotal != params['OutSum'].to_f
       # делаем с заказом то что нам нужно
       
-      @order.status = "2"
+      @order.order_status_id = 2
       @order.save
       # ...
       # говорим робокассе, что все хорошо
