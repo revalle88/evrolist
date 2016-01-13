@@ -23,11 +23,19 @@ class PaymentsController < ApplicationController
   
 
   def result
+    pass2 = "Test87654321"
     crc = get_hash(params['OutSum'], 
                             params['InvId'], 
-                            Payment::MERCHANT_PASS_2,
+                            pass2,
                            "Shp_item=#{params['Shp_item']}")
     @result = "FAIL"
+    puts "params OutSum, InvId, pass2, shp_item, signature, crc"
+    puts params[:OutSum]
+    puts params[:InvId]
+    puts pass2
+    puts params[:Shp_item]
+    puts params[:SignatureValue]
+    puts crc
     begin
       # проверяем контрольную сумму, чтобы нас не похекали
       break if params['SignatureValue'].blank? || crc.casecmp(params['SignatureValue']) != 0
