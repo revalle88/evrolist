@@ -48,7 +48,7 @@ class SavonController < ApplicationController
 
   def wscheckorder
   	@h = Hash.new
-  	@message
+  	@message = "init"
   	@wsdl="http://list-lider.ru:18060/ut/ws/Exchange?wsdl"
 	@basic_auth=["Активный менеджер",""]
 	@headers={"Authorization" => "Basic"}
