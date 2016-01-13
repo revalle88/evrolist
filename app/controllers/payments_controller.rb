@@ -35,6 +35,7 @@ class PaymentsController < ApplicationController
     puts pass2
     puts params[:Shp_item]
     puts params[:SignatureValue]
+    Rails.logger.info "test "
     puts crc
     begin
       # проверяем контрольную сумму, чтобы нас не похекали
@@ -54,6 +55,7 @@ class PaymentsController < ApplicationController
       # ...
       # говорим робокассе, что все хорошо
       @result = "OK#{params['InvId']}"
+      render :text => @result
     end while false
   end
 
