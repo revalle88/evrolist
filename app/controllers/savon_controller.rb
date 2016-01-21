@@ -1,8 +1,9 @@
 require 'savon' 
 class SavonController < ApplicationController
   def savontest
-  	@wsdl="http://list-lider.ru:18060/ut/ws/Exchange?wsdl"
-	@basic_auth=["Активный менеджер",""]
+  #	@wsdl="http://list-lider.ru:18060/ut/ws/Exchange?wsdl"
+	@wsdl="http://list-lider.ru:18060/ut/ws/ExchandeSite?wsdl"
+  	@basic_auth=["Активный менеджер",""]
 	@headers={"Authorization" => "Basic"}
 	@client = Savon.client do |globals|
 	  
@@ -36,7 +37,7 @@ class SavonController < ApplicationController
 
 
 	begin 
-		response = @client.call(:get_functional_option, message: {Name: "ПрефиксИнформационнойБазы" })
+		response = @client.call(:check, message: {ArrayProducts: "ПрефиксИнформационнойБазы" })
 		@savonresponse = response.body
 	rescue Exception => e2
 		@errormessage2 =  e2.message
