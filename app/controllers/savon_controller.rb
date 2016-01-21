@@ -37,7 +37,7 @@ class SavonController < ApplicationController
 
 
 	begin 
-		response = @client.call(:check, message: {ArrayProducts: "ПрефиксИнформационнойБазы" })
+		response = @client.call(:check, message: {ArrayProducts: "e7090224-9c29-11e4-9416-000c29fbc95b;1LF" })
 		@savonresponse = response.body
 	rescue Exception => e2
 		@errormessage2 =  e2.message
