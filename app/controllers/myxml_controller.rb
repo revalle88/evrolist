@@ -420,11 +420,11 @@ file_name = files[1]
   end
 
   def webdataImport
-    Rails.logger.debug "Webdataimport start"
+    logger.debug "Webdataimport start"
 
      catFiles = Dir.glob("#{Rails.root}/tmp/1cExchange/webdata/000000001/*.xml").sort
      file_name = catFiles[0]
-     Rails.logger.debug file_name
+     logger.debug file_name
      puts "file xml for categories"
      puts file_name
      loadCategories(file_name)
