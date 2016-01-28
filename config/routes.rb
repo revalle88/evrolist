@@ -32,6 +32,7 @@ List::Application.routes.draw do
   get "myxml/updatePrices"
   get "myxml/updateRests"
   get "myxml/deleteImageTest"
+  get "myxml/webdataImport"
   get "favourites/deleteSession"
   get "favourites/destroy"
   get "catalog/root"

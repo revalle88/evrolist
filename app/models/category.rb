@@ -12,4 +12,12 @@ class Category < ActiveRecord::Base
     		self.all
   		end
 	end
+
+	 def image_from_url(url)
+  	checkurl = URI.parse(url)
+	req = Net::HTTP.new(checkurl.host, checkurl.port)
+	res = req.request_head(checkurl.path)
+    if res.code == "200" then self.image = open(url)
+    end
+  end
 end

@@ -18,10 +18,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: list_dev
+  database: deploy2801
   host: localhost
   pool: 5
-  username: list
+  username: deploy2801
   password: list
 
   # Connect on a TCP socket. Omitted by default since the client uses a

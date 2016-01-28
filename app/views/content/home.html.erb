@@ -20,7 +20,9 @@
 <div  style="padding-right:25px">
 <p>
   
+    <% unless @article.blank? %>
   <%=raw @article.content %>
+  <% end %>
 </p>
 </div>
 <div>
