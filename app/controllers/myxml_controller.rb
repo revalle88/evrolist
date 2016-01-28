@@ -19,8 +19,7 @@ class MyxmlController < ApplicationController
       @file_name = file_name
       Rails.logger.info "file_name"
       
-     Rails.logger.info "#{@file_name}"
-     Rails.logger.info "#{file_name}"
+     
       doc = File.open(file_name) { |f| Nokogiri::XML(f) }
         Rails.logger.info "1"
       doc.remove_namespaces!
@@ -430,7 +429,12 @@ file_name = files[1]
     
 
      catFiles = Dir.glob("#{Rails.root}/tmp/1cExchange/webdata/000000001/*.xml").sort
+       @teststr = "#{Rails.root}"
+        Rails.logger.info @teststr
      file_name = catFiles[0]
+     @teststr = catFiles[0]
+         Rails.logger.info "THIS"
+         Rails.logger.info @teststr
      #logger.debug file_name
      puts "file xml for categories"
      puts file_name
@@ -445,6 +449,7 @@ file_name = files[1]
          puts "files[2]"
          puts files[2]
         file_name = files[0]
+         
          loadGoods(file_name, folder)
          loadProductImages(file_name)
          file_name = files[1]

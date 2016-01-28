@@ -29,4 +29,16 @@ OrderItem.create(order_id: @order.id, product_id: 66, quantity: 10)
   	session.clear
     puts "session cleared"
   end
+def testlogger
+  @teststr = "sdkljfsdklf"
+   Rails.logger.info "file_name"
+    Rails.logger.info @teststr
+    Dir.glob("#{Rails.root}/tmp/1cExchange/webdata/000000001/goods/*") do |folder|
+        files = Dir.glob(folder +"/*.xml").sort
+         @teststr = "#{Rails.root}"
+         Rails.logger.info @teststr
+       end
+
+end
+
 end

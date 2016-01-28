@@ -47,6 +47,7 @@ List::Application.routes.draw do
   resources :order_items, only: [:create, :update, :destroy]
 
   get "test/createorder"
+  get "test/testlogger"
 
   
 
