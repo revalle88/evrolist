@@ -18,8 +18,9 @@ class MyxmlController < ApplicationController
     #Rails.logger.debug "loadCategories start"
       @file_name = file_name
       Rails.logger.info "file_name"
-      Rails.logger.info @file_name
-      Rails.logger.debug file_name
+      
+     Rails.logger.info "#{@file_name}"
+     Rails.logger.info "#{file_name}"
       doc = File.open(file_name) { |f| Nokogiri::XML(f) }
       doc.remove_namespaces!
      # Rails.logger.info "opened file"
