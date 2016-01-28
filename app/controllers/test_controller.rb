@@ -38,6 +38,7 @@ def testlogger
          @teststr = "#{Rails.root}"
          Rails.logger.info @teststr
        end
+        @teststr = "#{Rails.root}"
 
 end
 
