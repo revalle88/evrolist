@@ -15,7 +15,7 @@ class MyxmlController < ApplicationController
 
   end
   def loadCategories(file_name)
-    Rails.logger.info "loadCategories start"
+    Rails.logger.debug "loadCategories start"
       Rails.logger.info file_name
       doc = File.open(file_name) { |f| Nokogiri::XML(f) }
       doc.remove_namespaces!
@@ -420,11 +420,11 @@ file_name = files[1]
   end
 
   def webdataImport
-    Rails.logger.info "Webdataimport start"
+    Rails.logger.debug "Webdataimport start"
 
      catFiles = Dir.glob("#{Rails.root}/tmp/1cExchange/webdata/000000001/*.xml").sort
      file_name = catFiles[0]
-     Rails.logger.info file_name
+     Rails.logger.debug file_name
      puts "file xml for categories"
      puts file_name
      loadCategories(file_name)
