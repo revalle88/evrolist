@@ -22,13 +22,16 @@ class MyxmlController < ApplicationController
      Rails.logger.info "#{@file_name}"
      Rails.logger.info "#{file_name}"
       doc = File.open(file_name) { |f| Nokogiri::XML(f) }
+        Rails.logger.info "1"
       doc.remove_namespaces!
      # Rails.logger.info "opened file"
       root = doc.root;
+       Rails.logger.info "2"
         groups=root.at_xpath("//Классификатор//Группы")
         @rootGroups = groups.element_children
         @rootGroups.each do |gruppa|
           id1c = gruppa.xpath('Ид').inner_text 
+           Rails.logger.info "3"
           catName = gruppa.xpath('Наименование').inner_text
           code1c = gruppa.xpath('Описание').inner_text
           code1c = code1c.partition(" ").first
