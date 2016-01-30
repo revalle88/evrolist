@@ -428,7 +428,7 @@ file_name = files[1]
   def webdataImport
     
 
-     catFiles = Dir.glob("/home/deploy/1cExchange/webdata/000000001/*.xml").sort
+     catFiles = Dir.glob("/home/deploy/1cfull/webdata/000000001/*.xml").sort
        @teststr = "#{Rails.root}"
         Rails.logger.info @teststr
      file_name = catFiles[0]
@@ -438,9 +438,9 @@ file_name = files[1]
      #logger.debug file_name
      puts "file xml for categories"
      puts file_name
-     loadCategories(file_name)
+     #loadCategories(file_name)
 
-    Dir.glob("/home/deploy/1cExchange/webdata/000000001/goods/*") do |folder|
+    Dir.glob("/home/deploy/1cfull/webdata/000000001/goods/*") do |folder|
         files = Dir.glob(folder +"/*.xml").sort
          puts "files[0]"
          puts files[0]
