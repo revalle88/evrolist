@@ -430,11 +430,11 @@ file_name = files[1]
 
      catFiles = Dir.glob("/home/deploy/1cfull/webdata/000000001/*.xml").sort
        @teststr = "#{Rails.root}"
-        Rails.logger.info @teststr
+       # Rails.logger.info @teststr
      file_name = catFiles[0]
      @teststr = catFiles[0]
-         Rails.logger.info "THIS"
-         Rails.logger.info @teststr
+        # Rails.logger.info "THIS"
+        # Rails.logger.info @teststr
      #logger.debug file_name
      puts "file xml for categories"
      puts file_name
