@@ -32,6 +32,8 @@ class MyxmlController < ApplicationController
           id1c = gruppa.xpath('Ид').inner_text 
            Rails.logger.info "3"
           catName = gruppa.xpath('Наименование').inner_text
+          @strForLog = catName
+          Rails.logger.info @strForLog
           catName.slice!(0, catName.index(" "))
           code1c = gruppa.xpath('Описание').inner_text
           code1c = code1c.partition(" ").first
