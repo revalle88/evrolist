@@ -34,7 +34,9 @@ class MyxmlController < ApplicationController
           catName = gruppa.xpath('Наименование').inner_text
           @strForLog = catName
           Rails.logger.info @strForLog
+          unless catName.index(" ").nil?
           catName.slice!(0, catName.index(" "))
+          end
           code1c = gruppa.xpath('Описание').inner_text
           code1c = code1c.partition(" ").first
           if !(Category.exists?(:id1c => id1c)) then
@@ -72,7 +74,9 @@ class MyxmlController < ApplicationController
           
         id1c = gruppa.xpath('Ид').inner_text 
           catName = gruppa.xpath('Наименование').inner_text
+          unless catName.index(" ").nil?
           catName.slice!(0, catName.index(" "))
+           end
            code1c = gruppa.xpath('Описание').inner_text
             code1c = code1c.partition(" ").first
             if !(Category.exists?(:id1c => id1c)) then

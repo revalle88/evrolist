@@ -39,7 +39,7 @@ def testlogger
          @teststr = "#{Rails.root}"
          Rails.logger.info @teststr
        end
-       theString = "43.23.12. sljdfaskfj;klas dfaslkjf kl jsdklf js"
+       theString = "01. Бумага и бумажные изделия для офиса"
        theString.slice!(0, theString.index(" "))
         @teststr = theString
         #@teststr = theString.partition(" ").first
