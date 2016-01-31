@@ -32,12 +32,14 @@ class MyxmlController < ApplicationController
           id1c = gruppa.xpath('Ид').inner_text 
            Rails.logger.info "3"
           catName = gruppa.xpath('Наименование').inner_text
+          catName.slice!(0, catName.index(" "))
           code1c = gruppa.xpath('Описание').inner_text
           code1c = code1c.partition(" ").first
           if !(Category.exists?(:id1c => id1c)) then
             puts "Category not exists"
             category = Category.new
-            category.name = catName.partition(". ").last
+          #  category.name = catName.partition(". ").last
+            category.name = catName
             category.id1c = id1c 
             category.code1c = code1c
             category.image_from_url("http://evrolist.ru/components/com_virtuemart/shop_image/category/cat_"+code1c+".jpg")
@@ -47,7 +49,7 @@ class MyxmlController < ApplicationController
           else
             puts "Category  exists"
             category = Category.where(:id1c => id1c).first
-            category.name = catName.partition(". ").last
+           category.name = catName
             category.id1c = id1c 
             category.code1c = code1c
             category.save
@@ -68,14 +70,15 @@ class MyxmlController < ApplicationController
           
         id1c = gruppa.xpath('Ид').inner_text 
           catName = gruppa.xpath('Наименование').inner_text
+          catName.slice!(0, catName.index(" "))
            code1c = gruppa.xpath('Описание').inner_text
             code1c = code1c.partition(" ").first
             if !(Category.exists?(:id1c => id1c)) then
             puts "child category not exists"
             r = Category.find_by_id1c(parent1c)
             category = Category.new
-            category.name = catName.partition(". ").last
-            puts catName.partition(". ").last
+             category.name = catName
+           # puts catName.partition(". ").last
             category.id1c = id1c 
             category.code1c = code1c
             category.parent_id = r.id
@@ -87,8 +90,8 @@ class MyxmlController < ApplicationController
               puts "child category exists"
             r = Category.find_by_id1c(parent1c)
             category = Category.where(:id1c => id1c).first
-            category.name = catName.partition(". ").last
-             puts catName.partition(". ").last
+             category.name = catName
+            # puts catName.partition(". ").last
             category.id1c = id1c 
             category.code1c = code1c
             category.parent_id = r.id
@@ -178,7 +181,7 @@ class MyxmlController < ApplicationController
 
         if !(image1c.empty?) then
               #File.open(img_path) do |f|
-             File.open(folder+"/"+image1c) do |f|
+             File.open(folder+"/"+image1c) do |f|#######uncomment 4
                   product.image = f 
                    f.close
               end
@@ -428,7 +431,8 @@ file_name = files[1]
   def webdataImport
     
 
-     catFiles = Dir.glob("/home/deploy/1cfull/webdata/000000001/*.xml").sort
+     #catFiles = Dir.glob("/home/deploy/1cfull/webdata/000000001/*.xml").sort
+     catFiles = Dir.glob("/home/vpush/1cfull/webdata/000000001/*.xml").sort
        @teststr = "#{Rails.root}"
        # Rails.logger.info @teststr
      file_name = catFiles[0]
@@ -438,9 +442,10 @@ file_name = files[1]
      #logger.debug file_name
      puts "file xml for categories"
      puts file_name
-     #loadCategories(file_name)
+     loadCategories(file_name)
 
-    Dir.glob("/home/deploy/1cfull/webdata/000000001/goods/*") do |folder|
+   # Dir.glob("/home/deploy/1cfull/webdata/000000001/goods/*") do |folder|
+   Dir.glob("/home/vpush/1cfull/webdata/000000001/goods/*") do |folder|
         files = Dir.glob(folder +"/*.xml").sort
          puts "files[0]"
          puts files[0]
@@ -450,12 +455,12 @@ file_name = files[1]
          puts files[2]
         file_name = files[0]
          
-         loadGoods(file_name, folder)
-         #loadProductImages(file_name)
+        #loadGoods(file_name, folder)
+        
          file_name = files[1]
-         updatePrices(file_name)
+        # updatePrices(file_name)
          file_name = files[2]
-         updateRests(file_name)
+        # updateRests(file_name)
 
 
    

@@ -30,6 +30,7 @@ OrderItem.create(order_id: @order.id, product_id: 66, quantity: 10)
     puts "session cleared"
   end
 def testlogger
+
   @teststr = "sdkljfsdklf"
    Rails.logger.info "file_name"
     Rails.logger.info @teststr
@@ -38,8 +39,10 @@ def testlogger
          @teststr = "#{Rails.root}"
          Rails.logger.info @teststr
        end
-        @teststr = "#{Rails.root}"
-
+       theString = "43.23.12. sljdfaskfj;klas dfaslkjf kl jsdklf js"
+       theString.slice!(0, theString.index(" "))
+        @teststr = theString
+        #@teststr = theString.partition(" ").first
 end
 
 end
