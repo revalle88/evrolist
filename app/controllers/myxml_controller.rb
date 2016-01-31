@@ -432,7 +432,7 @@ file_name = files[1]
     
 
      #catFiles = Dir.glob("/home/deploy/1cfull/webdata/000000001/*.xml").sort
-     catFiles = Dir.glob("/home/vpush/1cfull/webdata/000000001/*.xml").sort
+     catFiles = Dir.glob("/home/deploy/1cfull/webdata/000000001/*.xml").sort
        @teststr = "#{Rails.root}"
        # Rails.logger.info @teststr
      file_name = catFiles[0]
@@ -445,7 +445,7 @@ file_name = files[1]
      loadCategories(file_name)
 
    # Dir.glob("/home/deploy/1cfull/webdata/000000001/goods/*") do |folder|
-   Dir.glob("/home/vpush/1cfull/webdata/000000001/goods/*") do |folder|
+   Dir.glob("/home/deploy/1cfull/webdata/000000001/goods/*") do |folder|
         files = Dir.glob(folder +"/*.xml").sort
          puts "files[0]"
          puts files[0]
