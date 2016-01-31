@@ -448,7 +448,7 @@ file_name = files[1]
      #logger.debug file_name
      puts "file xml for categories"
      puts file_name
-     loadCategories(file_name)
+     #loadCategories(file_name)
 
    # Dir.glob("/home/deploy/1cfull/webdata/000000001/goods/*") do |folder|
    Dir.glob("/home/deploy/1cfull/webdata/000000001/goods/*") do |folder|
@@ -461,12 +461,12 @@ file_name = files[1]
          puts files[2]
         file_name = files[0]
          
-        #loadGoods(file_name, folder)
+        loadGoods(file_name, folder)
         
          file_name = files[1]
-        # updatePrices(file_name)
+        updatePrices(file_name)
          file_name = files[2]
-        # updateRests(file_name)
+         updateRests(file_name)
 
 
    
