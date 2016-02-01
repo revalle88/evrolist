@@ -670,6 +670,53 @@ input[type=submit]:hover{
 
 }
 
+.cat_tab{
+	float:left;
+	width:310px;
+	margin:0px 20px 10px 25px;
+	
+}
+
+.cat_tab:hover{
+	
+}
+
+.cat_tab_img{
+display: block;
+	float: left;
+	margin: 5px 10px 10px auto;
+	width: 70px;
+	height:70px;
+}
+
+.cat_tab_sub{
+	font-size:10pt;
+	font-family:Helvetica;
+}
+
+.cat_tab_sub a{
+	text-decoration: none;
+	color: #4560e6;
+}
+
+
+
+.cat_tab_child{
+font-size: 9pt;
+	font-family:Helvetica;
+}
+
+.cat_tab_child li{
+list-style-type: disc;
+padding: 0;
+margin: 5px 0px 0px 110px;
+}
+
+.cat_tab_child a{
+text-decoration: none;
+color: #555555;
+}
+
 
 
 .pagination{

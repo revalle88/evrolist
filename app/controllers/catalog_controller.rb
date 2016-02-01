@@ -10,6 +10,7 @@ class CatalogController < ApplicationController
     
   end
   def show
+    @childCats = Category.where(parent_id: params[:cat_id])
   	@rootCats = Category.where(parent_id: nil)
     @categories = Category.all
     @cat = Category.find(params[:cat_id])

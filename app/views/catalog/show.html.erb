@@ -19,36 +19,7 @@
 
 <% end %>
 
-<% content_for :filter do %>
 
-<div class = "filter_header">
-Подбор товара
-</div>
-<div class = "catalog_filter">
-<%= form_tag "/catalog/filter/", :method => 'get' do %>
-  <p>Цена, руб.<br><br>
-  <%= hidden_field_tag :cat_id, @cat.id %> 
-  <%= hidden_field_tag :slider_max, params[:slider_max], value: @slider_max %> 
-  <div class = "filter_min_price">
-  от:   <%= text_field_tag :min_price, params[:min_price], value: @minPrice, size: 4 %> 
-  </div>
-  <div class = "filter_max_price">
-  до:   <%= text_field_tag :max_price, params[:max_price], value: @maxPrice, size: 4 %> 
-  </div>
-  <br>
-   
-    
-  <div id="the_slider"></div> 
-  <br>
-    <%= submit_tag "фильтр", :name => nil %>
-   
- </p>
-<% end %>
-</div>
-
-
-
-<%end%>
 
 
 <script>
@@ -112,22 +83,66 @@ $(document).ready ( function () {
 
 <%= will_paginate @catProducts, :previous_label => 'назад <<', :next_label => '>> вперед' %>
 <br>
+<!-- если есть подкатегории-->
+<% if @catProducts.blank? %>
+  <% @childCats.each do |childCat| %>
+      <div class = "cat_tab">
+       <%= link_to image_tag(childCat.image.url(:thumb), :class => "cat_tab_img"), :action => 'show', :controller => 'catalog', :cat_id => childCat.id%>
+      <div class = "cat_tab_sub"><a href='/catalog/show/<%= childCat.id%>'><%= childCat.name %></a></div>
+      <div class = "cat_tab_child">
+      <%= renderChildCats(childCat) %>
+      </div>
+      </div>
+  <% end %>
+<% else %>
+<!-- если нет подкатегории-->
+
+<% content_for :filter do %>
+
+<div class = "filter_header">
+Подбор товара
+</div>
+<div class = "catalog_filter">
+<%= form_tag "/catalog/filter/", :method => 'get' do %>
+  <p>Цена, руб.<br><br>
+  <%= hidden_field_tag :cat_id, @cat.id %> 
+  <%= hidden_field_tag :slider_max, params[:slider_max], value: @slider_max %> 
+  <div class = "filter_min_price">
+  от:   <%= text_field_tag :min_price, params[:min_price], value: @minPrice, size: 4 %> 
+  </div>
+  <div class = "filter_max_price">
+  до:   <%= text_field_tag :max_price, params[:max_price], value: @maxPrice, size: 4 %> 
+  </div>
+  <br>
+   
+    
+  <div id="the_slider"></div> 
+  <br>
+    <%= submit_tag "фильтр", :name => nil %>
+   
+ </p>
+<% end %>
+</div>
+
+
+
+<%end%>
 
 <% @catProducts.each do |product| %>
-<div class = "product_tab">
-<%= link_to image_tag(product.image.url(:thumb), :class => "product_tab_img"), :action => 'product', :controller => 'catalog', :good_id => product.id%>
-<!-- <%= image_tag product.image.url(:thumb), :class => "product_tab_img" %> -->
-<%= image_tag('z_rating_0.gif', :class => "product_tab_rating" )%>
-<div class = "product_tab_name">
-<a href='/catalog/product/<%= product.id%>'><%= product.name %></a>
-</div>
-<div class = "product_tab_art">
-Арт: <%= product.articul %><br>
-</div>
-<div class = "product_tab_price">
-<%= number_with_precision(product.price, precision: 2) %>&nbspр.
-</div>
-<div class="">
+  <div class = "product_tab">
+  <%= link_to image_tag(product.image.url(:thumb), :class => "product_tab_img"), :action => 'product', :controller => 'catalog', :good_id => product.id%>
+  <!-- <%= image_tag product.image.url(:thumb), :class => "product_tab_img" %> -->
+  <%= image_tag('z_rating_0.gif', :class => "product_tab_rating" )%>
+  <div class = "product_tab_name">
+  <a href='/catalog/product/<%= product.id%>'><%= product.name %></a>
+  </div>
+  <div class = "product_tab_art">
+  Арт: <%= product.articul %><br>
+  </div>
+  <div class = "product_tab_price">
+  <%= number_with_precision(product.price, precision: 2) %>&nbspр.
+  </div>
+  <div class="">
       
       <%= form_for @order_item, remote: true do |f| %>
      
@@ -141,27 +156,29 @@ $(document).ready ( function () {
       <% end %>
     </div>
 
-<div class = "product_tab_2buttons">
-<div id = "toFavBtn<%= product.id %>">
-<input type="submit"  value="В Избранное" class = "toFav" id = "fav<%= product.id %>"/>
-</div>
+  <div class = "product_tab_2buttons">
+  <div id = "toFavBtn<%= product.id %>">
+  <input type="submit"  value="В Избранное" class = "toFav" id = "fav<%= product.id %>"/>
+  </div>
 
 
 &nbsp&nbsp
 <!-- <form method = "get" action = "/favourites/showFavourites">-->
-<div class = "compare_btn">
-<a href = "/favourites/showFavourites"><input type="submit"  value="К сравнению" /></a>
-</div>
+  <div class = "compare_btn">
+  <a href = "/favourites/showFavourites"><input type="submit"  value="К сравнению" /></a>
+  </div>
 <!-- </form>-->
 
-</div>
+  </div>
 
 
 
-</div>
+  </div>
 
 
 <% end %>
+
+<% end %> 
 
 <!-- .header  onclick = "location.href='/favourites/showFavourites'"
 <% @catProducts.each do |product| %>
