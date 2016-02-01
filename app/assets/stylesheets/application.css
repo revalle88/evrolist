@@ -286,6 +286,8 @@ input[type=submit]:hover{
 	-moz-box-shadow:inset 0px 0px 1px #edf9ff;
 	-webkit-box-shadow:inset 0px 0px 1px #edf9ff;
 	box-shadow:inset 0px 0px 1px #edf9ff;
+
+	/*overflow: hidden;*/
 }
 
 .subcatList{
@@ -325,7 +327,7 @@ input[type=submit]:hover{
 	text-align:center;
 	
 	padding: 4px 10px 4px 10px;
-	margin-right:30px;
+	margin-right:0px;
 	margin-top:7px;
 	border:none;
 }
@@ -432,8 +434,15 @@ input[type=submit]:hover{
 .col_4 {width:950px;}
 .col_5 {width:950px;}
 
-/*#menu .menu_right {
-	float:right;
+
+
+/*#menu .menu_right a {
+	font-size:10px; 
+	margin-right:0px;
+}*/
+
+/*.menu_right {
+	font-size:7px; 
 	margin-right:0px;
 }*/
 #menu li .align_right {
