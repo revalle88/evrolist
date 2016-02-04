@@ -1,0 +1,68 @@
+ <% content_for :catmenu do %>
+<div class = "catMenu">
+   <ul id="menu">
+
+  <% @rootCats.each do |rcat| %>
+  <li class="menu_right"><%= link_to rcat.name, controller: "catalog", action: "show", cat_id: rcat.id%>
+ <%= renderSubmenu(rcat) %>
+
+</li>
+<% end %>
+</ul>
+</div>
+
+
+<% end %>
+
+ <% if user_signed_in? %>
+ Фамилия:
+  <%= @order.surname %><br>
+  Имя и Отчество:
+ <%= @order.name %><br>
+  Email:
+ <%= @order.email %><br>
+  Телефон: 
+ <%= @order.phone %> <br>
+ Мобильный телефон:
+ <%= @order.mphone %><br>
+ Город:
+ <%= @order.city %><br>
+ Улица:
+ <%= @order.street %> <br>
+ Дом:
+ <%= @order.house %> <br>
+ Корпус:
+ <%= @order.korpus %> <br>
+ Подъезд:
+ <%= @order.entrance %> <br>
+ Этаж:
+ <%= @order.floor %> <br>
+ Комментарий:
+ <%= @order.comment %> <br>
+ <%= link_to "Изменить информацию о заказе", controller: "checkout", action: "checkout_form", order_id: @order.id %><br>
+ <%= link_to "вернуться к корзине", controller: "carts", action: "show" %><br>
+<table>
+ <% @order.order_items.each do |order_item| %>
+      <tr>
+
+<td>
+<div class = "favTableArticul">
+<%= order_item.product.articul %>
+</div>
+</td>
+<td width="380px">
+<div class = "favTableName">
+<%= order_item.product.name %>
+</div>
+</td>
+<td>
+<div class = "favTablePrice">
+<h4 class="text-right"><span style="color: green"><%= order_item.unit_price %> р.</span></h4> 
+</div>
+</td>
+</tr>
+
+  <% end %>
+  </table>
+
+ <% end %>

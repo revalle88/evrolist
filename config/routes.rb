@@ -1,4 +1,7 @@
 List::Application.routes.draw do
+  get 'checkout/checkout_form'
+  post 'checkout/savedetails'
+
   get 'payments/pay'
 
   get 'payments/result'

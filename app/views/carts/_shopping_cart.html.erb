@@ -70,6 +70,9 @@ $("#pay_btn").click(function (e) {
   </table>
   <br>
   Общая сумма заказа: <%= @current_order.subtotal %> руб. <br><br>
+  <%= link_to "перейти ко офомрлению", controller: "checkout", action: "checkout_form", order_id: current_order.id%>
+
+
   <form action="<%= @pay_desc['mrh_url'] %>" method="post" id = "payform">
   <input type=hidden name=MrchLogin value="<%= @pay_desc['mrh_login'] %>">
   <input type=hidden name=OutSum value="<%= @pay_desc['out_summ'] %>">

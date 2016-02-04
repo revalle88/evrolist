@@ -1,0 +1,134 @@
+ <% content_for :catmenu do %>
+<div class = "catMenu">
+   <ul id="menu">
+
+  <% @rootCats.each do |rcat| %>
+  <li class="menu_right"><%= link_to rcat.name, controller: "catalog", action: "show", cat_id: rcat.id%>
+ <%= renderSubmenu(rcat) %>
+
+</li>
+<% end %>
+</ul>
+</div>
+
+
+<% end %>
+
+ <% if user_signed_in? %>
+ вы  зарегестрированы
+ <%= form_tag "/checkout/savedetails/", :method => 'post' do %>
+      <%= label_tag :surname, "Фамилия: " %> <br> 
+        <%= text_field_tag :surname, current_order.surname, class: "searchInput", size: 34 %> <br> 
+      <%= label_tag :name, "Имя и отчество: " %> <br>
+        <%= text_field_tag :name, current_order.name, class: "searchInput", size: 34 %><br> 
+     
+        <%= label_tag :email, "email: " %> <br>
+        <%= text_field_tag :email, current_order.email, class: "searchInput", size: 34 %> <br> 
+        <%= hidden_field_tag :order_id, current_order.id  %>
+        <%= label_tag :phone, "Телефон: " %> <br> 
+        <%= text_field_tag :phone, current_order.phone, class: "searchInput", size: 34 %> <br> 
+        <%= label_tag :mphone, "Мобильный телефон: " %> <br> 
+        <%= text_field_tag :mphone, current_order.mphone, class: "searchInput", size: 34 %> <br> 
+        <%= label_tag :city, "Город: " %> <br> 
+        <%= text_field_tag :city, current_order.city, class: "searchInput", size: 34 %> <br> 
+                <%= label_tag :street, "Улица: " %> <br> 
+        <%= text_field_tag :street, current_order.street, class: "searchInput", size: 34 %> <br> 
+                <%= label_tag :house, "Дом: " %> <br> 
+        <%= text_field_tag :house, current_order.house, class: "searchInput", size: 34 %> <br> 
+          <%= label_tag :korpus, "Корпус: " %> <br> 
+        <%= text_field_tag :korpus, current_order.korpus, class: "searchInput", size: 34 %> <br> 
+          <%= label_tag :entrance, "Подъезд: " %> <br> 
+        <%= text_field_tag :entrance, current_order.entrance, class: "searchInput", size: 34 %> <br> 
+          <%= label_tag :floor, "Этаж: " %> <br> 
+        <%= text_field_tag :floor, current_order.floor, class: "searchInput", size: 34 %> <br> 
+          <%= label_tag :comment, "Комментарий: " %> <br> 
+        <%= text_area :comment, current_order.comment, class: "searchInput", size: 340 %> <br> 
+		<%= submit_tag 'Оформить заказ' %>
+  <% end %>
+
+
+ <% else %>
+
+ Войдите 
+ <div style = "width:200px;">
+
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email, 'Электронная почта:' %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, 'Пароль:' %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  
+
+  <div class="actions">
+    <%= f.submit "Войти" %>
+  </div>
+<% end %>
+
+
+</div>
+Или зарегестрируйтесь
+<div style = "width:200px;">
+<h2>Регистрация</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email, 'Электронная почта:'%><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, 'Пароль:' %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> символов минимум)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, 'Подтверждение пароля:' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :surname, 'Фамилия:' %><br />
+    <%= f.text_field :surname, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name, 'Имя и Отчество:' %><br />
+    <%= f.text_field :name, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phoneWork, 'Рабочий телефон:' %><br />
+    <%= f.text_field :phoneWork, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phoneMob, 'Мобильный телефон (для экстренной связки):' %><br />
+    <%= f.text_field :phoneMob, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Зарегестрироваться" %>
+  </div>
+<% end %>
+
+
+
+</div>
+
+<%= render "devise/shared/links" %>
+ <%end %>
+
+<h1>Checkout#checkout_form</h1>
+<p>Find me in app/views/checkout/checkout_form.html.erb</p>

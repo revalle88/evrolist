@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128134324) do
+ActiveRecord::Schema.define(version: 20160204085806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,10 +58,6 @@ ActiveRecord::Schema.define(version: 20160128134324) do
     t.string   "code1c"
   end
 
-  add_index "categories", ["lft"], name: "index_categories_on_lft", using: :btree
-  add_index "categories", ["parent_id"], name: "index_categories_on_parent_id", using: :btree
-  add_index "categories", ["rgt"], name: "index_categories_on_rgt", using: :btree
-
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -105,9 +101,24 @@ ActiveRecord::Schema.define(version: 20160128134324) do
     t.integer  "order_status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "surname"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "mphone"
+    t.string   "city"
+    t.string   "street"
+    t.string   "house"
+    t.string   "korpus"
+    t.integer  "floor"
+    t.integer  "entrance"
+    t.string   "flat"
+    t.text     "comment"
+    t.integer  "user_id"
   end
 
   add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "product_properties", force: :cascade do |t|
     t.integer  "product_id"
@@ -177,4 +188,5 @@ ActiveRecord::Schema.define(version: 20160128134324) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "orders", "users"
 end
