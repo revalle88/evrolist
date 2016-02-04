@@ -52,6 +52,47 @@ $(document).ready ( function () {
     })
     
     });
+
+//вид1
+ $(document).on ("click", ".view1", function () {
+     // alert("clicked!")
+         $.ajax({
+        url: "/favourites/view1",
+        type: "GET",
+        dataType: "json",
+        data: { id: "1" },
+        //complete: function() {  alert("Ajax complete!")},
+             success: function(data) {
+                   //alert("usccess!")
+                         location.reload();
+                      },
+               error: function() {
+            //            alert("Ajax error!")
+                      }
+        //context: document.body
+    })
+    
+    });
+ //вид2
+ $(document).on ("click", ".view2", function () {
+     // alert("clicked!")
+         $.ajax({
+        url: "/favourites/view2",
+        type: "GET",
+        dataType: "json",
+        data: { id: "1" },
+        //complete: function() {  alert("Ajax complete!")},
+             success: function(data) {
+                   // alert("usccess!")
+                         location.reload();
+                      },
+               error: function() {
+            //            alert("Ajax error!")
+                      }
+        //context: document.body
+    })
+    
+    });
  var maxSlide =  $("#max_price").val();
  var minSlide =  $("#min_price").val();
  var sliderMax =  $("#slider_max").val();
@@ -78,13 +119,15 @@ $(document).ready ( function () {
 </script>
 
 
-	<b><%= @cat.name %></b>
-	<br>
+
 
 <%= will_paginate @catProducts, :previous_label => 'назад <<', :next_label => '>> вперед' %>
-<br>
+
 <!-- если есть подкатегории-->
 <% if @catProducts.blank? %>
+  <b><%= @cat.name %></b>
+  <br>
+  <br>
   <% @childCats.each do |childCat| %>
       <div class = "cat_tab">
        <%= link_to image_tag(childCat.image.url(:thumb), :class => "cat_tab_img"), :action => 'show', :controller => 'catalog', :cat_id => childCat.id%>
@@ -127,8 +170,15 @@ $(document).ready ( function () {
 
 
 <%end%>
-
+  <b><%= @cat.name %></b>
+  <div>вид товара
+  <button id = "view1" class="view1">1</button>
+  <button id = "view2" class ="view2">2</button>
+  </div>
+  <br>
 <% @catProducts.each do |product| %>
+<% if session[:view] ==1 then %>
+
   <div class = "product_tab">
   <%= link_to image_tag(product.image.url(:thumb), :class => "product_tab_img"), :action => 'product', :controller => 'catalog', :good_id => product.id%>
   <!-- <%= image_tag product.image.url(:thumb), :class => "product_tab_img" %> -->
@@ -153,7 +203,7 @@ $(document).ready ( function () {
            <%= image_submit_tag('to_cart.png', :class => "product_tab_rating" )%>
           </div>
         </div>
-      <% end %>
+      <% end %><!-- form -->
     </div>
 
   <div class = "product_tab_2buttons">
@@ -175,8 +225,53 @@ $(document).ready ( function () {
 
   </div>
 
+<% else %>
+<div class = "product_plain">
+  <div class = "product_plain_left">
+     <%= link_to image_tag(product.image.url(:thumb), :class => "product_plain_img"), :action => 'product', :controller => 'catalog', :good_id => product.id%>
+    <div class = "product_plain_buttons">
+    <div id = "toFavBtn<%= product.id %>">
+    <input type="submit"  value="В Избранное" class = "toFav" id = "fav<%= product.id %>"/>
+    </div>
+    <a href = "/favourites/showFavourites"><input type="submit"  value="К сравнению" /></a>
+    </div>   
+  </div>
+  <div class = "product_plain_right">
+    <div class = "product_plain_name">
+      <a href='/catalog/product/<%= product.id%>'><%= product.name %></a>
+    </div>
+    <div class="product_plain_art">
+    <%= product.articul %>
+    </div>
+    <div class = "product_plain_controls"> 
+      <div class = "product_plain_price">
+        <%= number_with_precision(product.price, precision: 2) %>&nbspр.
+      </div>
+       <%= image_tag('z_rating_0.gif', :class => "product_tab_rating" )%>
+      <div class = "product_plain_to_cart">
+        <div class="">
+          <%= form_for @order_item, remote: true do |f| %>
+     
+            <div class="input-group">
+            <%= f.number_field :quantity, value: 1, class: "cartCounterSimpleCat", min: 1 %>
+             <div class="input-group-btn">
+            <%= f.hidden_field :product_id, value: product.id %>
+            <%= image_submit_tag('to_cart.png', :class => "product_plain_to_cart" )%>
+            </div>
+            </div>
+      <% end %><!-- form -->
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>  
+      <% end %> <!-- else -->
+
 
 <% end %>
+
 
 <% end %> 
 

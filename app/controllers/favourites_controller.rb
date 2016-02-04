@@ -14,6 +14,21 @@ class FavouritesController < ApplicationController
 
   end
 
+  def view1
+puts "AJAX AJXA AJXA AJAXA"
+      session[:view] = 1
+      render :json => {
+                            :data => "ok"
+                      }
+  end
+    def view2
+puts "AJAX AJXA AJXA AJAXA"
+      session[:view] = 0
+      render :json => {
+                            :data => "ok"
+                      }
+  end
+
   def showFavourites
   	##cart
     @order_item = current_order.order_items.new
