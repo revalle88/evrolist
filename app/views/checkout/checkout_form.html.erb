@@ -1,3 +1,18 @@
+ <script>
+$(document).ready(function () {
+$("#fvalidate").validate({
+
+rules: {
+"email": {required: true, email: true},
+"name": {required: true, minlength: 3},
+"surname": {required: true, minlength: 3},
+"phone": {required: true, number:true, minlength: 6}
+}
+});
+});
+
+ </script>
+
  <% content_for :catmenu do %>
 <div class = "catMenu">
    <ul id="menu">
@@ -16,7 +31,7 @@
 
  <% if user_signed_in? %>
  вы  зарегестрированы
- <%= form_tag "/checkout/savedetails/", :method => 'post' do %>
+ <%= form_tag "/checkout/savedetails/", :id => 'fvalidate', :method => 'post' do %>
       <%= label_tag :surname, "Фамилия: " %> <br> 
         <%= text_field_tag :surname, current_order.surname, class: "searchInput", size: 34 %> <br> 
       <%= label_tag :name, "Имя и отчество: " %> <br>
