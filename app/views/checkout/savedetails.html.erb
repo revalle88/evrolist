@@ -38,31 +38,46 @@
  Этаж:
  <%= @order.floor %> <br>
  Комментарий:
- <%= @order.comment %> <br>
+ <%= @order.comment %> <br><br>
  <%= link_to "Изменить информацию о заказе", controller: "checkout", action: "checkout_form", order_id: @order.id %><br>
- <%= link_to "вернуться к корзине", controller: "carts", action: "show" %><br>
-<table>
+<br>
+ <button id = "reserve">Зарезервировать</button>
+ <br><br><br>
+<table class = "gridtable">
+<tr>
+  <th>Артикул</th>
+  <th>Название</th>
+
+  <th>Цена за ед.</th>
+   <th>Количество</th>
+</tr>
+
  <% @order.order_items.each do |order_item| %>
       <tr>
 
 <td>
-<div class = "favTableArticul">
+
 <%= order_item.product.articul %>
-</div>
+
 </td>
 <td width="380px">
-<div class = "favTableName">
+
 <%= order_item.product.name %>
-</div>
+
 </td>
 <td>
 <div class = "favTablePrice">
 <h4 class="text-right"><span style="color: green"><%= order_item.unit_price %> р.</span></h4> 
 </div>
 </td>
+<td>
+x <%= order_item.quantity %>
+</td>
 </tr>
 
   <% end %>
   </table>
+  <br>
+   <%= link_to "вернуться к корзине", controller: "carts", action: "show" %><br>
 
  <% end %>

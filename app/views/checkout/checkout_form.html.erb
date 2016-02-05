@@ -34,31 +34,31 @@ rules: {
  <br>
  <%= form_tag "/checkout/savedetails/", :id => 'fvalidate', :method => 'post' do %>
       <%= label_tag :surname, "Фамилия: " %> <br> 
-        <%= text_field_tag :surname, current_order.surname, class: "searchInput", size: 34 %> <br> 
+        <%= text_field_tag :surname, current_order.surname, class: "", size: 34 %> <br> 
       <%= label_tag :name, "Имя и отчество: " %> <br>
-        <%= text_field_tag :name, current_order.name, class: "searchInput", size: 34 %><br> 
+        <%= text_field_tag :name, current_order.name, class: "", size: 34 %><br> 
      
         <%= label_tag :email, "email: " %> <br>
-        <%= text_field_tag :email, current_order.email, class: "searchInput", size: 34 %> <br> 
+        <%= text_field_tag :email, current_order.email, class: "", size: 34 %> <br> 
         <%= hidden_field_tag :order_id, current_order.id  %>
         <%= label_tag :phone, "Телефон: " %> <br> 
-        <%= text_field_tag :phone, current_order.phone, class: "searchInput", size: 34 %> <br> 
+        <%= text_field_tag :phone, current_order.phone, class: "", size: 34 %> <br> 
         <%= label_tag :mphone, "Мобильный телефон: " %> <br> 
-        <%= text_field_tag :mphone, current_order.mphone, class: "searchInput", size: 34 %> <br> 
+        <%= text_field_tag :mphone, current_order.mphone, class: "", size: 34 %> <br> 
         <%= label_tag :city, "Город: " %> <br> 
-        <%= text_field_tag :city, current_order.city, class: "searchInput", size: 34 %> <br> 
+        <%= text_field_tag :city, current_order.city, class: "", size: 34 %> <br> 
                 <%= label_tag :street, "Улица: " %> <br> 
-        <%= text_field_tag :street, current_order.street, class: "searchInput", size: 34 %> <br> 
+        <%= text_field_tag :street, current_order.street, class: "", size: 34 %> <br> 
                 <%= label_tag :house, "Дом: " %> <br> 
-        <%= text_field_tag :house, current_order.house, class: "searchInput", size: 34 %> <br> 
+        <%= text_field_tag :house, current_order.house, class: "", size: 34 %> <br> 
           <%= label_tag :korpus, "Корпус: " %> <br> 
-        <%= text_field_tag :korpus, current_order.korpus, class: "searchInput", size: 34 %> <br> 
+        <%= text_field_tag :korpus, current_order.korpus, class: "", size: 34 %> <br> 
           <%= label_tag :entrance, "Подъезд: " %> <br> 
-        <%= text_field_tag :entrance, current_order.entrance, class: "searchInput", size: 34 %> <br> 
+        <%= text_field_tag :entrance, current_order.entrance, class: "", size: 34 %> <br> 
           <%= label_tag :floor, "Этаж: " %> <br> 
-        <%= text_field_tag :floor, current_order.floor, class: "searchInput", size: 34 %> <br> 
+        <%= text_field_tag :floor, current_order.floor, class: "", size: 34 %> <br> 
           <%= label_tag :comment, "Комментарий: " %> <br> 
-        <%= text_area :comment, current_order.comment, class: "searchInput", size: 340 %> <br> 
+        <%= text_area :comment, current_order.comment, class: "", size: 340 %> <br> 
 		<%= submit_tag 'Оформить заказ' %>
   <% end %>
 
