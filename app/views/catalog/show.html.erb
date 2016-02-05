@@ -177,7 +177,7 @@ $(document).ready ( function () {
   </div>
   <br>
 <% @catProducts.each do |product| %>
-<% if session[:view] ==1 then %>
+<% if session[:view] !=1 then %>
 
   <div class = "product_tab">
   <%= link_to image_tag(product.image.url(:thumb), :class => "product_tab_img"), :action => 'product', :controller => 'catalog', :good_id => product.id%>
