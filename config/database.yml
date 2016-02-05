@@ -18,11 +18,11 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: deploy2801
+  database: list_dev
   host: localhost
   pool: 5
-  username: deploy2801
-  password: list
+  username: deploy
+  password: gliA6kkvn
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have

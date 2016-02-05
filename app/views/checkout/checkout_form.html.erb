@@ -30,7 +30,8 @@ rules: {
 <% end %>
 
  <% if user_signed_in? %>
- вы  зарегестрированы
+ Введите дополнительную информацию о заказе:
+ <br>
  <%= form_tag "/checkout/savedetails/", :id => 'fvalidate', :method => 'post' do %>
       <%= label_tag :surname, "Фамилия: " %> <br> 
         <%= text_field_tag :surname, current_order.surname, class: "searchInput", size: 34 %> <br> 
@@ -64,8 +65,8 @@ rules: {
 
  <% else %>
 
- Войдите 
- <div style = "width:200px;">
+ <div style = "width:200px; float:left;margin: 0 0 0 10px;">
+ <h3>Войдите: </h3>
 
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -82,15 +83,16 @@ rules: {
   
 
   <div class="actions">
+  <br>
     <%= f.submit "Войти" %>
   </div>
 <% end %>
 
 
 </div>
-Или зарегестрируйтесь
-<div style = "width:200px;">
-<h2>Регистрация</h2>
+
+<div style = "width:400px; float: right;">
+<h3 style = "text-align: center;margin-right:150px;">Или зарегестрируйтесь:</h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -134,6 +136,7 @@ rules: {
   </div>
 
   <div class="actions">
+  <br>
     <%= f.submit "Зарегестрироваться" %>
   </div>
 <% end %>
@@ -141,9 +144,11 @@ rules: {
 
 
 </div>
+<div style = "width:600px;clear:both;">
+<!--
+<%= render "devise/shared/links" %> -->
+</div>
 
-<%= render "devise/shared/links" %>
  <%end %>
 
-<h1>Checkout#checkout_form</h1>
-<p>Find me in app/views/checkout/checkout_form.html.erb</p>
+
